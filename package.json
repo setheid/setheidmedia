@@ -1,0 +1,30 @@
+{
+  "name": "setheidmedia",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/setheid/setheidmedia.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/setheid/setheidmedia/issues"
+  },
+  "homepage": "https://github.com/setheid/setheidmedia#readme",
+  "devDependencies": {
+    "angular": "^1.5.5",
+    "angular-animate": "^1.5.5",
+    "angular-route": "^1.5.5",
+    "express": "^4.13.4",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.7",
+    "gulp-concat-css": "^2.2.0",
+    "webpack-stream": "^3.2.0"
+  }
+}

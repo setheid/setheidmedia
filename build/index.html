@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html data-ng-app="app">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" width="device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
 
     <link href='https://fonts.googleapis.com/css?family=Raleway:200,100' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="styles.min.css" media="screen" title="no title" charset="utf-8">
     <link rel="stylesheet" href="code_main.css" media="screen" title="no title" charset="utf-8">
     <script src="https://use.fontawesome.com/366ccfbd2e.js"></script>
+
     <title>Seth's Portfolio</title>
   </head>
   <body data-ng-controller="AppController as appCtrl">
-    <div class="container">
+    <div class="body">
 
       <nav data-ng-controller="NavController as navCtrl" class="main-navbar">
         <div class="brand">
@@ -32,38 +32,42 @@
       </nav>
 
       <main>
-        <div class="code content">
+        <div class="code container">
           <section class="landing">
-            <figure><div class="profile-pic"></div></figure>
-            <p>
-              I am a client focused, full-stack web developer hoping to make the world a better place by presenting quality products and services through the art of clean and concise code. My background as a musician and audio engineer has provided a basis for quickly understanding complex systems and operations and influences my approach to development by allowing me to visualize code in a similar manner to how I see signal flow when working with audio.
-            </p>
+            <div class="content">
+              <figure><div class="profile-pic"></div></figure>
+              <p>
+                I am a client focused, full-stack web developer hoping to make the world a better place through the art of clean and concise code. I am also a musician and audio engineer and bring what I've learned about the creative process to coding.
+              </p>
+            </div>
           </section>
 
-          <section data-ng-controller="CodeFootController as codefootCtrl" class="foot">
-            <ul>
-              <li class="active">
-                <span>ABOUT</span>
-              </li><!--
-            --><li>
-                <span>WORK</span>
-              </li><!--
-            --><li>
-                <span>SKILLS</span>
-              </li><!--
-            --><li>
-                <span>CONTACT</span>
-              </li>
-            </ul>
-          </section>
+          <footer>
+            <section data-ng-init="codefootCtrl.highlightInit()" data-ng-controller="CodeFootController as codefootCtrl" class="foot">
+              <ul>
+                <li class="active">
+                  <span>ABOUT</span>
+                </li><!--
+                --><li>
+                  <span>WORK</span>
+                </li><!--
+                --><li>
+                  <span>SKILLS</span>
+                </li><!--
+                --><li>
+                  <span>CONTACT</span>
+                </li>
+              </ul>
+            </section>
+          </footer>
+
         </div>
       </main>
 
-      <footer></footer>
     </div>
 
   <!-- SCRIPTS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.3/jquery.min.js"></script>
-  <script src="angular.bundle.js" charset="utf-8"></script>
+  <script src="angular.bundle.js"></script>
   </body>
 </html>

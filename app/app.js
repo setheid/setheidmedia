@@ -18,11 +18,11 @@ app.controller('NavController', function() {
     if (navToggle) {
       $('.navbar-toggle').addClass('active');
       $('.tabs').css({'left':'0', 'box-shadow':'5px 0 10px rgba(0, 0, 0, 0.5)'});
-      $('body').css({'margin-left':'250px'});
+      $('.body').css({'margin-left':'250px'});
     } else if (!navToggle) {
       $('.navbar-toggle').removeClass('active');
       $('.tabs').css({'left':'-250px', 'box-shadow':'none'});
-      $('body').css({'margin-left':'0'});
+      $('.body').css({'margin-left':'0'});
     }
   }
 });
@@ -30,7 +30,7 @@ app.controller('NavController', function() {
 app.controller('CodeFootController', function() {
   const _this = this;
 
-  function highlightInit() {
+  _this.highlightInit = function() {
     let activeTabPosition = `${($('.foot li.active').position().left / $(window).width())*100}%`;
     $('.foot ul').append('<li class="highlight"></li>');
     $('.highlight').css({'left':activeTabPosition});
@@ -44,5 +44,4 @@ app.controller('CodeFootController', function() {
       $('.highlight').css({'left':newPosition});
     });
   }
-  highlightInit();
 });

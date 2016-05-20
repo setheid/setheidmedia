@@ -1,8 +1,9 @@
 nav {
   position: fixed;
   top: 0;
-  padding: 0 3%;
-  width: 100%;
+  padding: 0 3vw;
+  width: 100vw;
+  z-index: 100;
 }
 
 nav a {
@@ -49,7 +50,6 @@ nav a {
 .navbar-toggle:focus {
   outline: none;
 }
-
 .hamburger-bar {
   display: block;
   position: absolute;
@@ -60,7 +60,6 @@ nav a {
   background: white;
   transition: background 0s 0.4s;
 }
-
 .hamburger-bar:before,
 .hamburger-bar:after {
   position: absolute;
@@ -73,12 +72,10 @@ nav a {
   transition-duration: 0.4s, 0.4s;
   transition-delay: 0.3s, 0s;
 }
-
 .hamburger-bar::before {
   top: -8px;
   transition-property: top, transform;
 }
-
 .hamburger-bar::after {
   bottom: -8px;
   transition-property: bottom, transform;
@@ -88,21 +85,17 @@ nav a {
 .navbar-toggle.active {
   background-color: #FD180B;
 }
-
 .navbar-toggle.active .hamburger-bar {
   background: none;
 }
-
 .navbar-toggle.active .hamburger-bar:before {
   top: 0;
   transform: rotate(45deg);
 }
-
 .navbar-toggle.active .hamburger-bar:after {
   bottom: 0;
   transform: rotate(-45deg);
 }
-
 .navbar-toggle.active .hamburger-bar:before,
 .navbar-toggle.active .hamburger-bar:after {
   transition-delay: 0s, 0.4s;
@@ -130,11 +123,11 @@ nav a {
 }
 
 .tabs li {
-  border-top: 2px solid rgba(206, 206, 206, 0.3);
-  border-left: 2px solid rgba(206, 206, 206, 0.3);
+  border-top: 2px solid rgba(206, 206, 206, 0.1);
+  border-left: 2px solid rgba(206, 206, 206, 0.1);
   border-right: 2px solid rgba(21, 21, 21, 0.5);
   border-bottom: 2px solid rgba(21, 21, 21, 0.5);
-  background-color: rgba(72, 72, 72, 0.5);
+  background-color: rgba(72, 72, 72, 0.3);
   position: relative;
   display: block;
   vertical-align: middle;
@@ -159,7 +152,6 @@ nav a {
   transition: all 0.1s;
 }
 
-.tabs a:active,
 .tabs a:hover {
   color: white;
 }

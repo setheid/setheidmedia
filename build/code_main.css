@@ -1,21 +1,40 @@
-.code .landing {
-  padding: 1.5rem; 10vw 0;
-  width: 100vw;
+.code.container {
+  position: relative;
+  display: block;
 }
 
-.code .landing p {
+.landing {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  resize: vertical;
+  height: 75vh;
+  width: 100vw;
+  background: url(images/desktop.jpg) bottom left no-repeat #1D1D1D;
+  background-size: cover;
+}
+
+.landing .content {
+  padding: 0;
+  width: 100%;
+  resize: vertical;
+}
+
+.landing p {
   display: block;
   position: relative;
-  line-height: 22px;
-  color: white;
-  width: 80vw;
+  line-height: 20px;
+  font-size: 16px;
+  color: #C5C5C5;
+  width: 90vw;
   max-width: 450px;
   margin: 0 auto;
   padding: 1rem 0;
   text-align: center;
 }
 
-.code .landing figure {
+.landing figure {
   display: block;
   position: relative;
   width: 35vw;

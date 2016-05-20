@@ -12,7 +12,22 @@ const sources = {
 
 gulp.task('bundle:angular', () => {
   return gulp.src(__dirname + '/app/app.js')
-    .pipe(webpack({output: {filename: 'angular.bundle.js'}}))
+    .pipe(webpack({
+      output: {filename: 'angular.bundle.js'},
+      // devtool: 'source-map',
+      module: {
+        loaders: [
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            loader: 'babel',
+            query: {
+              presets: ['es2015', 'stage-0']
+            }
+          }
+        ]
+      }
+    }))
     .pipe(gulp.dest('./build'))
 });
 
@@ -40,4 +55,4 @@ gulp.task('bundle:test', () => {
     .pipe(gulp.dest('./test'));
 });
 
-gulp.task('default', ['bundle:angular', 'bundle:scripts', 'minify:css', 'copy']);
+gulp.task('default', ['bundle:angular', 'minify:css', 'copy']);

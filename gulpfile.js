@@ -26,12 +26,12 @@ gulp.task('minify:css', () => {
   return gulp.src(sources.css)
   .pipe(concatCss('styles.min.css'))
   .pipe(minifyCss({compatibility: 'ie8'}))
-  .pipe(gulp.dest('./build'));
+  .pipe(gulp.dest(__dirname));
 });
 
 gulp.task('copy', () => {
   return gulp.src(sources.copy)
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest(__dirname))
 });
 
 gulp.task('bundle:test', () => {

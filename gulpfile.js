@@ -13,13 +13,13 @@ const sources = {
 gulp.task('bundle:angular', () => {
   return gulp.src(__dirname + '/app/app.js')
     .pipe(webpack({output: {filename: 'angular.bundle.js'}}))
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest(__dirname))
 });
 
 gulp.task('bundle:scripts', () => {
   return gulp.src(__dirname + '/app/js/*.js')
     .pipe(webpack({output: {filename: 'scripts.bundle.js'}}))
-    .pipe(gulp.dest('./build'))
+    .pipe(gulp.dest(__dirname))
 });
 
 gulp.task('minify:css', () => {

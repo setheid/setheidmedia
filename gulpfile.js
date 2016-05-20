@@ -13,25 +13,25 @@ const sources = {
 gulp.task('bundle:angular', () => {
   return gulp.src(__dirname + '/app/app.js')
     .pipe(webpack({output: {filename: 'angular.bundle.js'}}))
-    .pipe(gulp.dest(__dirname))
+    .pipe(gulp.dest('./build'))
 });
 
 gulp.task('bundle:scripts', () => {
   return gulp.src(__dirname + '/app/js/*.js')
     .pipe(webpack({output: {filename: 'scripts.bundle.js'}}))
-    .pipe(gulp.dest(__dirname))
+    .pipe(gulp.dest('./build'))
 });
 
 gulp.task('minify:css', () => {
   return gulp.src(sources.css)
   .pipe(concatCss('styles.min.css'))
   .pipe(minifyCss({compatibility: 'ie8'}))
-  .pipe(gulp.dest(__dirname));
+  .pipe(gulp.dest('./build'));
 });
 
 gulp.task('copy', () => {
   return gulp.src(sources.copy)
-    .pipe(gulp.dest(__dirname))
+    .pipe(gulp.dest('./build'))
 });
 
 gulp.task('bundle:test', () => {

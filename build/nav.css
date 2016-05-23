@@ -1,32 +1,15 @@
-nav {
-  position: fixed;
-  top: 0;
-  padding: 0 3vw;
-  width: 100vw;
-  z-index: 100;
-}
-
-nav a {
-  text-decoration: none;
-  display: block;
-  position: relative;
-}
-
 .main-navbar {
-  height: 60px;
+  height: 50px;
   background-color: #333333;
   text-align: center;
 }
 
 .brand {
   padding: 0;
-  line-height: 60px;
+  line-height: 50px;
   display: block;
   font-size: 7.5vw;
   font-weight: 100;
-}
-
-.brand a {
   color: white;
 }
 
@@ -37,8 +20,8 @@ nav a {
   position: absolute;
   width: 40px;
   height: 40px;
+  top: 5px;
   left: 3%;
-  top: 10px;
   border: none;
   cursor: pointer;
   -webkit-transition: background 0.4s;
@@ -53,17 +36,17 @@ nav a {
 .hamburger-bar {
   display: block;
   position: absolute;
-  top: 19px;
-  left: 5px;
-  right: 5px;
+  top: 46%;
+  left: 6px;
+  right: 6px;
   height: 3px;
   background: white;
   transition: background 0s 0.4s;
 }
-.hamburger-bar:before,
-.hamburger-bar:after {
-  position: absolute;
+.hamburger-bar::before,
+.hamburger-bar::after {
   display: block;
+  position: absolute;
   left: 0;
   width: 100%;
   height: 3px;
@@ -88,17 +71,27 @@ nav a {
 .navbar-toggle.active .hamburger-bar {
   background: none;
 }
-.navbar-toggle.active .hamburger-bar:before {
+.navbar-toggle.active .hamburger-bar::before {
   top: 0;
   transform: rotate(45deg);
 }
-.navbar-toggle.active .hamburger-bar:after {
+.navbar-toggle.active .hamburger-bar::after {
   bottom: 0;
   transform: rotate(-45deg);
 }
-.navbar-toggle.active .hamburger-bar:before,
-.navbar-toggle.active .hamburger-bar:after {
+.navbar-toggle.active .hamburger-bar::before,
+.navbar-toggle.active .hamburger-bar::after {
   transition-delay: 0s, 0.4s;
+}
+
+/******** LANDSCAPE MODE ********/
+@media only screen and (orientation: landscape) {
+  .main-navbar {
+    background-color: transparent;
+  }
+  .main-navbar .brand {
+    display: none;
+  }
 }
 
 /********** Navigation Tabs **********/

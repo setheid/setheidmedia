@@ -3,25 +3,23 @@
   display: block;
 }
 
-.landing {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  resize: vertical;
-  height: 75vh;
-  width: 100vw;
-  background: url(images/desktop.jpg) bottom left no-repeat #1D1D1D;
+.code section {
+  padding-top: 50px;
+}
+
+/********** LANDING/ABOUT **********/
+.code-landing {
+  background: url(images/desktop.jpg) top left no-repeat #1D1D1D;
   background-size: cover;
 }
 
-.landing .content {
-  padding: 0;
+.code-landing .content {
+  padding: 3rem 0;
   width: 100%;
-  resize: vertical;
+  /*resize: vertical;*/
 }
 
-.landing p {
+.code-landing p {
   display: block;
   position: relative;
   line-height: 20px;
@@ -34,7 +32,7 @@
   text-align: center;
 }
 
-.landing figure {
+.code-landing figure {
   display: block;
   position: relative;
   width: 35vw;
@@ -50,4 +48,17 @@
   height: 100%;
   background-image: url(images/profile_pic.jpg);
   background-size: cover;
+}
+
+/*********** WORK *************/
+.code-work {
+  background-color: blue;
+  color: white;
+}
+
+/******** LANDSCAPE MODE ********/
+@media only screen and (orientation: landscape) {
+  .code section {
+    padding-top: 0;
+  }
 }

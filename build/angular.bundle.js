@@ -55,6 +55,46 @@
 	  var _this = this;
 	});
 
+	app.controller('CodeController', function () {
+	  var _this = this;
+
+	  _this.fullPageInit = function () {
+	    $(document).ready(function () {
+	      $('#fullpage').fullpage({
+	        anchors: ['about', 'work', 'skills', 'contact'],
+	        menu: '#code-nav',
+	        touchSensitivity: 15,
+	        scrollOverflow: true,
+	        paddingBottom: '50px',
+	        afterLoad: function afterLoad(anchorLink) {
+	          codeFooterInit(anchorLink);
+	        },
+	        onLeave: function onLeave(index, nextIndex, direction) {
+	          var $leavingSection = void 0,
+	              $nextSection = void 0,
+	              activeAnchor = void 0,
+	              $activeTab = void 0,
+	              activeTabPosition = void 0;
+
+	          $leavingSection = $(this);
+
+	          if (direction == 'down') {
+	            $nextSection = $leavingSection.next();
+	          } else if (direction == 'up') {
+	            $nextSection = $leavingSection.prev();
+	          }
+
+	          activeAnchor = $nextSection.data('anchor');
+	          $activeTab = $('li[data-menuanchor=\'' + activeAnchor + '\'');
+	          activeTabPosition = $activeTab.position().left / $(window).width() * 100 + '%';
+
+	          $('.highlight').css({ 'left': activeTabPosition });
+	        }
+	      });
+	    });
+	  };
+	});
+
 	app.controller('NavController', function () {
 	  var _this = this;
 	  var navToggle = false;
@@ -73,21 +113,57 @@
 	  };
 	});
 
+	function codeFooterInit(anchor) {
+	  var $activeTab = void 0,
+	      activeTabPosition = void 0;
+	  $activeTab = $('li[data-menuanchor=\'' + anchor + '\'');
+	  activeTabPosition = $activeTab.position().left / $(window).width() * 100 + '%';
+
+	  $('.foot ul').append('<li class="highlight"></li>');
+	  $('.highlight').css({ 'left': activeTabPosition });
+
+	  $('.foot li').on('click', function () {
+	    $activeTab = $(this);
+	    var newPosition = $activeTab.position().left / $(window).width() * 100 + '%';
+
+	    $('.highlight').css({ 'left': newPosition });
+	  });
+	}
+
 	app.controller('CodeFootController', function () {
 	  var _this = this;
 
 	  _this.highlightInit = function () {
-	    var activeTabPosition = $('.foot li.active').position().left / $(window).width() * 100 + '%';
-	    $('.foot ul').append('<li class="highlight"></li>');
-	    $('.highlight').css({ 'left': activeTabPosition });
+	    $(document).ready(function () {
+	      var $activeTab = void 0,
+	          currUrl = void 0,
+	          activeAnchor = void 0,
+	          activeTabPosition = void 0;
 
-	    $('.foot li').on('click', function () {
-	      var activeTab = $(this);
-	      var newPosition = activeTab.position().left / $(window).width() * 100 + '%';
+	      currUrl = window.location.href.split('/');
+	      activeAnchor = currUrl[currUrl.length - 1].slice(1);
+	      $activeTab = $('li[data-menuanchor=\'' + activeAnchor + '\'');
+	      activeTabPosition = $activeTab.position().left / $(window).width() * 100 + '%';
 
-	      $('.foot li').removeClass('active');
-	      activeTab.addClass('active');
-	      $('.highlight').css({ 'left': newPosition });
+	      $('.foot ul').append('<li class="highlight"></li>');
+	      $('.highlight').css({ 'left': activeTabPosition });
+
+	      $('.foot li').on('click', function () {
+	        $activeTab = $(this);
+	        var newPosition = $activeTab.position().left / $(window).width() * 100 + '%';
+
+	        // $('.foot li').removeClass('active');
+	        // activeTab.addClass('active');
+	        $('.highlight').css({ 'left': newPosition });
+	      });
+
+	      $(window).scroll(function () {
+	        // let activeTab = $('.foot li.active');
+	        // let newPosition = `${(activeTab.position().left / $(window).width())*100}%`;
+	        //
+	        // $('.highlight').css({'left':newPosition});
+	        console.log('page scroll');
+	      });
 	    });
 	  };
 	});

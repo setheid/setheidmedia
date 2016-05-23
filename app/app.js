@@ -1,12 +1,48 @@
 'use strict';
 
 const angular = require('angular');
-require('angular-route')
+require('angular-route');
 
 const app = angular.module('app', ['ngRoute']);
 
 app.controller('AppController', function() {
-  let _this = this;
+  const _this = this;
+});
+
+app.controller('CodeController', function() {
+  const _this = this;
+
+  _this.fullPageInit = function() {
+    $(document).ready(function() {
+      $('#fullpage').fullpage({
+        anchors:['about', 'work', 'skills', 'contact'],
+        menu: '#code-nav',
+        touchSensitivity: 15,
+        scrollOverflow: true,
+        paddingBottom: '50px',
+        afterLoad: function(anchorLink){
+          codeFooterInit(anchorLink);
+        },
+        onLeave: function(index, nextIndex, direction){
+          let $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+
+          $leavingSection = $(this);
+
+          if (direction == 'down') {
+            $nextSection = $leavingSection.next();
+          } else if (direction == 'up') {
+            $nextSection = $leavingSection.prev();
+          }
+
+          activeAnchor = $nextSection.data('anchor');
+          $activeTab = $(`li[data-menuanchor='${activeAnchor}'`);
+          activeTabPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+
+          $('.highlight').css({'left':activeTabPosition});
+        }
+      });
+    });
+  };
 });
 
 app.controller('NavController', function() {
@@ -27,21 +63,54 @@ app.controller('NavController', function() {
   }
 });
 
+function codeFooterInit(anchor) {
+  let $activeTab, activeTabPosition;
+  $activeTab = $(`li[data-menuanchor='${anchor}'`);
+  activeTabPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+
+  $('.foot ul').append('<li class="highlight"></li>');
+  $('.highlight').css({'left':activeTabPosition});
+
+  $('.foot li').on('click', function() {
+    $activeTab = $(this);
+    let newPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+
+    $('.highlight').css({'left':newPosition});
+  });
+}
+
 app.controller('CodeFootController', function() {
   const _this = this;
 
   _this.highlightInit = function() {
-    let activeTabPosition = `${($('.foot li.active').position().left / $(window).width())*100}%`;
-    $('.foot ul').append('<li class="highlight"></li>');
-    $('.highlight').css({'left':activeTabPosition});
+    $(document).ready(function() {
+      let $activeTab, currUrl, activeAnchor, activeTabPosition;
 
-    $('.foot li').on('click', function() {
-      let activeTab = $(this);
-      let newPosition = `${(activeTab.position().left / $(window).width())*100}%`;
+      currUrl = (window.location.href).split('/');
+      activeAnchor = currUrl[currUrl.length-1].slice(1);
+      $activeTab = $(`li[data-menuanchor='${activeAnchor}'`);
+      activeTabPosition = `${($activeTab.position().left / $(window).width())*100}%`;
 
-      $('.foot li').removeClass('active');
-      activeTab.addClass('active');
-      $('.highlight').css({'left':newPosition});
+      $('.foot ul').append('<li class="highlight"></li>');
+      $('.highlight').css({'left':activeTabPosition});
+
+      $('.foot li').on('click', function() {
+        $activeTab = $(this);
+        let newPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+
+        // $('.foot li').removeClass('active');
+        // activeTab.addClass('active');
+        $('.highlight').css({'left':newPosition});
+      });
+
+      $(window).scroll(function() {
+        // let activeTab = $('.foot li.active');
+        // let newPosition = `${(activeTab.position().left / $(window).width())*100}%`;
+        //
+        // $('.highlight').css({'left':newPosition});
+        console.log('page scroll');
+      });
+
     });
   }
 });

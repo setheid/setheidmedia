@@ -8,23 +8,22 @@
 }
 
 /********** LANDING/ABOUT **********/
-.code-landing {
+.code-about {
   background: url(images/desktop.jpg) top left no-repeat #1D1D1D;
   background-size: cover;
 }
 
-.code-landing .content {
+.code-about .content {
   padding: 3rem 0;
   width: 100%;
-  /*resize: vertical;*/
 }
 
-.code-landing p {
+.code-about p {
   display: block;
   position: relative;
   line-height: 20px;
   font-size: 16px;
-  color: #C5C5C5;
+  color: #EFEFEF;
   width: 90vw;
   max-width: 450px;
   margin: 0 auto;
@@ -32,7 +31,7 @@
   text-align: center;
 }
 
-.code-landing figure {
+.code-about figure {
   display: block;
   position: relative;
   width: 35vw;

@@ -50,46 +50,12 @@
 	__webpack_require__(3);
 
 	var app = angular.module('app', ['ngRoute']);
+	/******** Controllers *********/
+	__webpack_require__(5)(app);
+	__webpack_require__(6)(app);
 
 	app.controller('AppController', function () {
 	  var _this = this;
-	});
-
-	app.controller('NavController', function () {
-	  var _this = this;
-	  var navToggle = false;
-
-	  _this.toggleNavDropdown = function () {
-	    navToggle = !navToggle;
-	    if (navToggle) {
-	      $('.navbar-toggle').addClass('active');
-	      $('.tabs').css({ 'left': '0', 'box-shadow': '5px 0 10px rgba(0, 0, 0, 0.5)' });
-	      $('.body').css({ 'margin-left': '250px' });
-	    } else if (!navToggle) {
-	      $('.navbar-toggle').removeClass('active');
-	      $('.tabs').css({ 'left': '-250px', 'box-shadow': 'none' });
-	      $('.body').css({ 'margin-left': '0' });
-	    }
-	  };
-	});
-
-	app.controller('CodeFootController', function () {
-	  var _this = this;
-
-	  _this.highlightInit = function () {
-	    var activeTabPosition = $('.foot li.active').position().left / $(window).width() * 100 + '%';
-	    $('.foot ul').append('<li class="highlight"></li>');
-	    $('.highlight').css({ 'left': activeTabPosition });
-
-	    $('.foot li').on('click', function () {
-	      var activeTab = $(this);
-	      var newPosition = activeTab.position().left / $(window).width() * 100 + '%';
-
-	      $('.foot li').removeClass('active');
-	      activeTab.addClass('active');
-	      $('.highlight').css({ 'left': newPosition });
-	    });
-	  };
 	});
 
 /***/ },
@@ -32011,6 +31977,95 @@
 
 	})(window, window.angular);
 
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('NavController', function () {
+	    var _this = this;
+	    var navToggle = false;
+
+	    _this.toggleNavDropdown = function () {
+	      navToggle = !navToggle;
+	      if (navToggle) {
+	        $('.navbar-toggle').addClass('active');
+	        $('.tabs').css({ 'left': '0', 'box-shadow': '5px 0 10px rgba(0, 0, 0, 0.5)' });
+	        $('.body').css({ 'margin-left': '250px' });
+	        $('.foot').css({ 'left': '250px' });
+	      } else if (!navToggle) {
+	        $('.navbar-toggle').removeClass('active');
+	        $('.tabs').css({ 'left': '-250px', 'box-shadow': 'none' });
+	        $('.body').css({ 'margin-left': '0' });
+	        $('.foot').css({ 'left': '0' });
+	      }
+	    };
+	  });
+	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('CodeController', function () {
+	    var _this = this;
+
+	    _this.fullPageInit = function () {
+	      $(document).ready(function () {
+	        $('#fullpage').fullpage({
+	          anchors: ['about', 'work', 'skills', 'contact'],
+	          menu: '#code-nav',
+	          animateAnchor: false,
+	          responsiveWidth: 750,
+	          fitToSection: false,
+	          touchSensitivity: 15,
+	          scrollOverflow: false,
+	          scrollingSpeed: 800,
+	          // paddingBottom: '50px',
+	          onLeave: function onLeave(index, nextIndex, direction) {
+	            var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+
+	            activeAnchor = $('.code .section').eq(nextIndex - 1).data('anchor');
+	            $activeTab = $('li[data-menuanchor=\'' + activeAnchor + '\']');
+	            activeTabPosition = $activeTab.position().left / $(window).width() * 100 + '%';
+
+	            $('.highlight').css({ 'left': activeTabPosition });
+	          }
+	        });
+
+	        var urlArray, anchor, $activeTab, activeTabPosition;
+
+	        if (window.location.pathname == '/') {
+	          $activeTab = $('li[data-menuanchor="about"]');
+	        } else {
+	          urlArray = window.location.href.split('/');
+	          anchor = urlArray[urlArray.length - 1].slice(1);
+	          $activeTab = $('li[data-menuanchor=\'' + anchor + '\']');
+	        }
+
+	        activeTabPosition = $activeTab.position().left / $(window).width() * 100 + '%';
+
+	        $('.foot ul').append('<li class="highlight"></li>');
+	        $('.highlight').css({ 'left': activeTabPosition });
+
+	        $('.foot li').on('click', function () {
+	          $activeTab = $(this);
+	          var newPosition = $activeTab.position().left / $(window).width() * 100 + '%';
+
+	          $('.highlight').css({ 'left': newPosition });
+	        });
+	      });
+	    };
+	  });
+	};
 
 /***/ }
 /******/ ]);

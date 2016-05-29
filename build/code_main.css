@@ -1,40 +1,51 @@
 .code.container {
   position: relative;
   display: block;
+  width: 100vw;
 }
 
-.landing {
-  margin-top: 60px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  resize: vertical;
-  height: 75vh;
-  width: 100vw;
-  background: url(images/desktop.jpg) bottom left no-repeat #1D1D1D;
+.code .section {
+  padding-top: 0;
+  color: #EFEFEF;
+  text-align: center;
+}
+
+.code h1 {
+  font-size: 175%;
+  padding: 2rem 0;
+}
+
+/********** LANDING/ABOUT **********/
+.code-about {
+  background: url(images/desktop.jpg) center center no-repeat #00273A;
   background-size: cover;
 }
 
-.landing .content {
-  padding: 0;
-  width: 100%;
-  resize: vertical;
+.code-about .fp-tableCell {
+  background: #00273A; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(transparent, #00273A); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(transparent, #00273A); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(transparent, #00273A); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(transparent, #00273A); /* Standard syntax */
 }
 
-.landing p {
+.code-about .content {
+  padding: 3rem 0;
+  width: 100%;
+}
+
+.code-about p {
   display: block;
   position: relative;
   line-height: 20px;
   font-size: 16px;
-  color: #C5C5C5;
   width: 90vw;
   max-width: 450px;
   margin: 0 auto;
   padding: 1rem 0;
-  text-align: center;
 }
 
-.landing figure {
+.code-about figure {
   display: block;
   position: relative;
   width: 35vw;
@@ -50,4 +61,108 @@
   height: 100%;
   background-image: url(images/profile_pic.jpg);
   background-size: cover;
+}
+
+/*********** WORK *************/
+.code-work {
+  min-height: 550px;
+  background: #00273A; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#00273A, #00291D); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#00273A, #00291D); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#00273A, #00291D); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#00273A, #00291D); /* Standard syntax */
+}
+
+.code-work .content {
+  padding: 3rem 0;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.code-work h2,
+.code-work h3,
+.code-work ul {
+  width: 100%;
+  max-width: 450px;
+  margin: 0 auto;
+}
+
+.code-work h2 {
+  font-family: 'Montserrat', helvetica, sans-serif;
+  font-size: 130%;
+  padding-bottom: 10px;
+  cursor: pointer;
+}
+
+.code-work h3 {
+  font-size: 115%;
+  padding-bottom: 15px;
+}
+
+.code-work a {
+  color: #08BAD0;
+  text-decoration: none;
+}
+
+.code-work span img {
+  height: 50px;
+  margin-right: 5px;
+}
+
+.cfpm-gif img {
+  padding-top: 25px;
+  width: 100%;
+  max-width: 450px;
+}
+
+.marvel-img img {
+  padding-top: 25px;
+  width: 100%;
+  max-width: 500px;
+}
+
+/*********** SKILLS *************/
+.code-skills {
+  background: #00291D; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(#00291D, transparent); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#00291D, transparent); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#00291D, transparent); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#00291D, transparent); /* Standard syntax */
+}
+
+.code-skills .content {
+  padding: 3rem 0;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.code-skills p {
+  padding: 0 0 15px;
+  text-align: left;
+  line-height: 25px;
+}
+
+/*********** CONTACT *************/
+.code-contact {
+  padding-bottom: 50px;
+}
+
+.code-contact .content {
+  padding: 0 0 1rem;
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.code-contact p {
+  padding: 0 0 1rem;
+}
+
+.code-contact span i {
+  font-size: 50px;
+  margin: 0 5px;
+}
+
+/******** LANDSCAPE MODE ********/
+@media only screen and (orientation: landscape) {
+
 }

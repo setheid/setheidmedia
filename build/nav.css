@@ -1,6 +1,6 @@
 .main-navbar {
   height: 50px;
-  background-color: #333333;
+  background-color: #2D2D2D;
   text-align: center;
 }
 
@@ -85,7 +85,7 @@
 }
 
 /******** LANDSCAPE MODE ********/
-@media only screen and (orientation: landscape) {
+@media only screen and (max-width: 750px) and (orientation: landscape) {
   .main-navbar {
     background-color: transparent;
   }

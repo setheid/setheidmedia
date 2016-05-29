@@ -202,7 +202,7 @@
 
             }else{
                 $htmlBody.css({
-                    'overflow' : 'visible',
+                    'overflow-y' : 'visible',
                     'height' : 'initial'
                 });
 
@@ -754,7 +754,7 @@
         * Creates the control arrows for the given section
         */
         function createSlideArrows(section){
-            section.find(SLIDES_WRAPPER_SEL).after('<div class="' + SLIDES_ARROW_PREV + '"></div><div class="' + SLIDES_ARROW_NEXT + '"></div>');
+            section.find(SLIDES_WRAPPER_SEL).after('<div class="' + SLIDES_ARROW_PREV + '"><i class="fa fa-angle-left" aria-hidden="true"></i></div><div class="' + SLIDES_ARROW_NEXT + '"><i class="fa fa-angle-right" aria-hidden="true"></i></div>');
 
             if(options.controlArrowColor!='#fff'){
                 section.find(SLIDES_ARROW_NEXT_SEL).css('border-color', 'transparent transparent transparent '+options.controlArrowColor);

@@ -9,11 +9,12 @@ app.controller('CodeController', function() {
         anchors:['about', 'work', 'skills', 'contact'],
         menu: '#code-nav',
         animateAnchor: false,
-        responsiveWidth: 0,
-        touchSensitivity: 20,
-        scrollOverflow: true,
+        responsiveWidth: 750,
+        fitToSection: false,
+        touchSensitivity: 15,
+        scrollOverflow: false,
         scrollingSpeed: 800,
-        paddingBottom: '50px',
+        // paddingBottom: '50px',
         onLeave: function(index, nextIndex, direction) {
           var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
 
@@ -40,12 +41,12 @@ app.controller('CodeController', function() {
       $('.foot ul').append('<li class="highlight"></li>');
       $('.highlight').css({'left':activeTabPosition});
 
-      // $('.foot li').on('click', function() {
-      //   $activeTab = $(this);
-      //   var newPosition = `${($activeTab.position().left / $(window).width())*100}%`;
-      //
-      //   $('.highlight').css({'left':newPosition});
-      // });
+      $('.foot li').on('click', function() {
+        $activeTab = $(this);
+        var newPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+
+        $('.highlight').css({'left':newPosition});
+      });
     });
   };
 });

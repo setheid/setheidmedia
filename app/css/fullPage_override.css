@@ -22,3 +22,14 @@
     right: 5px;
     padding-left: 15px;
 }
+
+@media (min-width: 750px) {
+  .fp-controlArrow.fp-prev {
+      left: 20px;
+      padding-right: 15px;
+  }
+  .fp-controlArrow.fp-next {
+      right: 20px;
+      padding-left: 15px;
+  }
+}

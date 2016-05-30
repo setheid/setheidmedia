@@ -1,175 +1,83 @@
-.code.container {
-  position: relative;
-  display: block;
-  width: 100vw;
-}
+@media (min-width: 750px) {
+  .code h1 {
+    font-size: 175%;
+    padding: 0 0 2rem;
+  }
 
-.code .section {
-  color: #EFEFEF;
-  text-align: center;
-}
-
-.code h1 {
-  font-size: 175%;
-  padding: 2rem 0;
-}
-
-/********** ABOUT **********/
-.code-about {
-  padding-top: 50px;
-  background: url(images/desktop.jpg) center center no-repeat #00273A;
-  background-size: cover;
-}
-@media (min-height: 575px) {
+  /********** ABOUT **********/
   .code-about {
     padding-top: 0;
+    background: url(images/desktop_full.jpg) bottom center no-repeat #00273A;
+    background-size: cover;
+  }
+
+  .code-about .content {
+    max-width: 600px;
+    padding: 0 0 3rem;
+  }
+
+  .code-about h1 {
+    display: block;
+    font-size: 200%;
+  }
+
+  .code-about p {
+    line-height: 30px;
+  }
+
+  /*********** WORK *************/
+  .code-work .content {
+    padding: 0 0 3rem;
+  }
+
+  /*********** SKILLS *************/
+  .code-skills .content {
+    padding: 0 0 3rem;
+    width: 80vw;
+    max-width: 705px;
+    margin: 0 auto;
+  }
+
+  /*********** CONTACT *************/
+  .code-contact span i {
+    font-size: 50px;
+    margin: 0 5px;
+  }
+
+  /********** FOOTER **********/
+  .code .foot {
+    background: transparent;
+  }
+
+  .code .foot span {
+    font-size: 80%;
   }
 }
 
-.code-about .fp-tableCell {
-  background: #00273A; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(transparent, #00273A); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(transparent, #00273A); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(transparent, #00273A); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(transparent, #00273A); /* Standard syntax */
-}
+@media (min-width: 950px) {
+  .code-about .content,
+  .code-work .content,
+  .code-skill .content {
+    width: 100%;
+    padding: 0;
+  }
+  
+  /********** FOOTER **********/
+  .code .foot {
+    background: transparent;
+    top: 10px;
+    right: 5px;
+    left: auto;
+    width: 340px;
+  }
 
-.code-about .content {
-  padding: 0;
-  width: 100%;
-}
+  .code .foot span {
+    font-size: 70%;
+  }
 
-.code-about p {
-  display: block;
-  position: relative;
-  line-height: 25px;
-  font-size: 16px;
-  width: 90vw;
-  max-width: 450px;
-  margin: 0 auto;
-  padding: 1rem 0;
-}
-
-.code-about figure {
-  display: block;
-  position: relative;
-  width: 35vw;
-  height: 35vw;
-  max-width: 175px;
-  max-height: 175px;
-  margin: 0 auto;
-}
-
-.profile-pic {
-  border-radius: 50%;
-  width: 100%;
-  height: 100%;
-  background-image: url(images/profile.jpg);
-  background-size: cover;
-}
-
-/*********** WORK *************/
-.code-work {
-  min-height: 550px;
-  background: #00273A; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(#00273A, #00291D); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#00273A, #00291D); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#00273A, #00291D); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#00273A, #00291D); /* Standard syntax */
-}
-
-.code-work .content {
-  padding: 3rem 0;
-  width: 90vw;
-  margin: 0 auto;
-}
-
-.code-work h2,
-.code-work h3,
-.code-work ul {
-  width: 100%;
-  max-width: 450px;
-  margin: 0 auto;
-}
-
-.code-work h2 {
-  font-family: 'Montserrat', helvetica, sans-serif;
-  font-size: 130%;
-  padding-bottom: 10px;
-  cursor: pointer;
-}
-
-.code-work h3 {
-  font-size: 115%;
-  padding-bottom: 15px;
-}
-
-.code-work a {
-  color: #08BAD0;
-  text-decoration: none;
-}
-
-.code-work span img {
-  height: 50px;
-  margin-right: 5px;
-}
-
-.cfpm-gif img {
-  padding-top: 25px;
-  width: 100%;
-  max-width: 450px;
-}
-
-.marvel-img img {
-  padding-top: 25px;
-  width: 100%;
-  max-width: 500px;
-}
-
-/*********** SKILLS *************/
-.code-skills {
-  background: #00291D; /* For browsers that do not support gradients */
-  background: -webkit-linear-gradient(#00291D, transparent); /* For Safari 5.1 to 6.0 */
-  background: -o-linear-gradient(#00291D, transparent); /* For Opera 11.1 to 12.0 */
-  background: -moz-linear-gradient(#00291D, transparent); /* For Firefox 3.6 to 15 */
-  background: linear-gradient(#00291D, transparent); /* Standard syntax */
-}
-
-.code-skills .content {
-  padding: 3rem 0;
-  width: 90vw;
-  margin: 0 auto;
-}
-
-.code-skills p {
-  padding: 0 0 15px;
-  text-align: left;
-  line-height: 25px;
-}
-
-/*********** CONTACT *************/
-.code-contact {
-  padding-bottom: 50px;
-}
-
-.code-contact .content {
-  padding: 0 0 1rem;
-  width: 90vw;
-  margin: 0 auto;
-}
-
-.code-contact p {
-  padding: 0 0 1rem;
-}
-
-.code-contact span i {
-  font-size: 50px;
-  margin: 0 5px;
-}
-
-/******** LANDSCAPE MODE ********/
-@media only screen and (orientation: landscape) {
-  .code-about {
-    padding-top: 0;
+  .code .foot li.highlight {
+    height: 42px;
+    background-color: transparent;
+    border-bottom: solid 3px #0DA93E;
   }
 }

@@ -27,7 +27,7 @@
 }
 
 .code-about .fp-tableCell {
-  background: #00273A; /* For browsers that do not support gradients */
+  background: none; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(transparent, #00273A); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(transparent, #00273A); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(transparent, #00273A); /* For Firefox 3.6 to 15 */
@@ -35,18 +35,21 @@
 }
 
 .code-about .content {
+  width: 90vw;
+  max-width: 500px;
   padding: 0;
-  width: 100%;
+  margin: 0 auto;
+}
+
+.code-about h1 {
+  display: none;
 }
 
 .code-about p {
   display: block;
   position: relative;
   line-height: 25px;
-  font-size: 16px;
-  width: 90vw;
-  max-width: 450px;
-  margin: 0 auto;
+  width: 100%;
   padding: 1rem 0;
 }
 

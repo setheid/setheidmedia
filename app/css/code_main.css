@@ -170,6 +170,10 @@
   margin: 0 5px;
 }
 
+.code-contact span a {
+  color: white;
+}
+
 /******** LANDSCAPE MODE ********/
 @media only screen and (orientation: landscape) {
   .code-about {

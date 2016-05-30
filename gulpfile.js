@@ -4,7 +4,8 @@ const concatCss = require('gulp-concat-css');
 const minifyCss = require('gulp-clean-css');
 
 const sources = {
-  css: __dirname + '/app/css/*.css',
+  css: [__dirname + '/app/css/*.css', !__dirname + '/app/css/*_responsive.css'],
+  responsive: __dirname + '/app/css/*_responsive.css',
   copy: __dirname + '/app/index.html',
   js: __dirname + '/app/app.js',
   test: __dirname + '/test/*_spec.js'
@@ -31,15 +32,22 @@ gulp.task('bundle:angular', () => {
     .pipe(gulp.dest('./build'))
 });
 
-gulp.task('bundle:scripts', () => {
-  return gulp.src(__dirname + '/app/js/*.js')
-    .pipe(webpack({output: {filename: 'scripts.bundle.js'}}))
-    .pipe(gulp.dest('./build'))
-});
+// gulp.task('bundle:scripts', () => {
+//   return gulp.src(__dirname + '/app/js/*.js')
+//     .pipe(webpack({output: {filename: 'scripts.bundle.js'}}))
+//     .pipe(gulp.dest('./build'))
+// });
 
 gulp.task('minify:css', () => {
   return gulp.src(sources.css)
   .pipe(concatCss('styles.min.css'))
+  .pipe(minifyCss({compatibility: 'ie8'}))
+  .pipe(gulp.dest('./build'));
+});
+
+gulp.task('minify:responsiveCSS', () => {
+  return gulp.src(sources.responsive)
+  .pipe(concatCss('responsive.min.css'))
   .pipe(minifyCss({compatibility: 'ie8'}))
   .pipe(gulp.dest('./build'));
 });
@@ -49,10 +57,10 @@ gulp.task('copy', () => {
     .pipe(gulp.dest('./build'))
 });
 
-gulp.task('bundle:test', () => {
-  return gulp.src(sources.test)
-    .pipe(webpack({output: {filename: 'test_bundle.js'}}))
-    .pipe(gulp.dest('./test'));
-});
+// gulp.task('bundle:test', () => {
+//   return gulp.src(sources.test)
+//     .pipe(webpack({output: {filename: 'test_bundle.js'}}))
+//     .pipe(gulp.dest('./test'));
+// });
 
-gulp.task('default', ['bundle:angular', 'minify:css', 'copy']);
+gulp.task('default', ['bundle:angular', 'minify:css', 'minify:responsiveCSS', 'copy']);

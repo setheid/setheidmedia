@@ -20,7 +20,7 @@ app.controller('CodeController', function() {
 
           activeAnchor = $('.code .section').eq(nextIndex-1).data('anchor');
           $activeTab = $(`li[data-menuanchor='${activeAnchor}']`);
-          activeTabPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+          activeTabPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
 
           $('.highlight').css({'left':activeTabPosition});
         }
@@ -36,14 +36,14 @@ app.controller('CodeController', function() {
         $activeTab = $(`li[data-menuanchor='${anchor}']`);
       }
 
-      activeTabPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+      activeTabPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
 
       $('.foot ul').append('<li class="highlight"></li>');
       $('.highlight').css({'left':activeTabPosition});
 
       $('.foot li').on('click', function() {
         $activeTab = $(this);
-        var newPosition = `${($activeTab.position().left / $(window).width())*100}%`;
+        var newPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
 
         $('.highlight').css({'left':newPosition});
       });

@@ -7,8 +7,8 @@
   height: 50px;
   background-color: #333333;
   z-index: 100;
-  -webkit-transition: left, right 0.5s ease;
-  transition: left, right 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
 }
 
 .code .foot a {

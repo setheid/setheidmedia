@@ -28,12 +28,16 @@ html, body {
   background-color: #1D1D1D;
 }
 
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
 nav {
   position: fixed;
   top: 0;
   padding: 0 3vw;
   width: 100vw;
-  z-index: 100;
 }
 
 nav a {
@@ -47,10 +51,13 @@ nav a {
   transition: margin-left 0.5s ease;
 }
 
+.body.nav-open {
+  margin-left: 250px;
+}
+
 main {
   position: relative;
   display: block;
-  z-index: 10;
 }
 
 /* NAV CLEARFIX */

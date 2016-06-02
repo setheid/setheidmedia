@@ -6,6 +6,7 @@ const clientServer = express();
 clientServer.use(express.static(`${__dirname}/build`));
 clientServer.use('/images', express.static(`${__dirname}/app/images`));
 clientServer.use('/views', express.static(`${__dirname}/app/views`));
+clientServer.use('/templates', express.static(`${__dirname}/app/templates`));
 clientServer.use('/vendor', express.static(`${__dirname}/app/vendor`));
 
 clientServer.listen(3000, (err) => {

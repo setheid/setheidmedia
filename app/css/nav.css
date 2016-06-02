@@ -2,6 +2,7 @@
   height: 50px;
   background-color: #2D2D2D;
   text-align: center;
+  z-index: 1000;
 }
 
 .brand {
@@ -26,7 +27,6 @@
   cursor: pointer;
   -webkit-transition: background 0.4s;
   transition: background 0.4s;
-  z-index: 10;
   background-color: #0DA93E;
 }
 
@@ -88,9 +88,13 @@
 @media only screen and (max-width: 750px) and (orientation: landscape) {
   .main-navbar {
     background-color: transparent;
+    width: 0;
   }
   .main-navbar .brand {
     display: none;
+  }
+  .navbar-toggle {
+    left: 5px;
   }
 }
 
@@ -105,9 +109,14 @@
   height: 100%;
   font-size: 120%;
   box-shadow: none;
-  z-index: 1000;
+  z-index: 1500;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+}
+
+.tabs.nav-open {
+  left: 0;
+  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .tabs ul {

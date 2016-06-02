@@ -1,10 +1,10 @@
 module.exports = function(app) {
 
-app.controller('CodeController', function() {
+app.controller('CodeController', ['$timeout', function($timeout) {
   const _this = this;
 
   _this.fullPageInit = function() {
-    $(document).ready(function() {
+    $timeout(function() {
       $('#fullpage').fullpage({
         anchors:['about', 'work', 'skills', 'contact'],
         menu: '#code-nav',
@@ -47,8 +47,16 @@ app.controller('CodeController', function() {
 
         $('.highlight').css({'left':newPosition});
       });
-    });
-  };
-});
+    }, 500);
+  }
+
+  _this.projects = require('./../data/projects').projects;
+
+  // _this.showDescription = false;
+  // _this.toggleDescription = function() {
+  //
+  // }
+
+}]);
 
 }

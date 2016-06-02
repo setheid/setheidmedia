@@ -5,8 +5,15 @@
 }
 
 .code .section {
+  position: relative;
   color: #EFEFEF;
   text-align: center;
+}
+
+.code .content {
+  position: relative;
+  width: 85vw;
+  margin: 0 auto;
 }
 
 .code h1 {
@@ -35,10 +42,8 @@
 }
 
 .code-about .content {
-  width: 90vw;
   max-width: 500px;
   padding: 0;
-  margin: 0 auto;
 }
 
 .code-about h1 {
@@ -73,6 +78,7 @@
 
 /*********** WORK *************/
 .code-work {
+  position: relative;
   min-height: 550px;
   background: #00273A; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(#00273A, #00291D); /* For Safari 5.1 to 6.0 */
@@ -83,8 +89,6 @@
 
 .code-work .content {
   padding: 3rem 0;
-  width: 90vw;
-  margin: 0 auto;
 }
 
 .code-work h2,
@@ -100,33 +104,103 @@
   font-size: 130%;
   padding-bottom: 10px;
   cursor: pointer;
+  color: white;
+}
+
+.code-work h2 i {
+  color: rgba(220, 220, 220, 0.7);
+  font-size: 75%;
 }
 
 .code-work h3 {
   font-size: 115%;
-  padding-bottom: 15px;
+  padding-bottom: 0.5rem;
 }
 
-.code-work a {
-  color: #08BAD0;
+.code-work span a {
+  color: white;
+  background-color: #555;
+  border-radius: 2px;
   text-decoration: none;
+  padding: 2px 3px;
+  margin: 0 2px;
+  font-family: helvetica;
+  font-size: 60%;
 }
 
-.code-work span img {
-  height: 50px;
-  margin-right: 5px;
-}
-
-.cfpm-gif img {
-  padding-top: 25px;
-  width: 100%;
-  max-width: 450px;
-}
-
-.marvel-img img {
-  padding-top: 25px;
+.work-img img {
+  position: relative;
+  padding-top: 0.5rem;
   width: 100%;
   max-width: 500px;
+}
+
+/******* PROJECT DESCRIPTION *******/
+.description-wrapper {
+  visibility: visible;
+  opacity: 1;
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 33.33%;
+  height: 100%;
+  background-color: #1D1D1D;
+  -webkit-transition:  visibility 0.5s, opacity 0.5s ease;
+  transition: visibility 0.5s, opacity 0.5s ease;
+}
+
+.description-wrapper.hidden {
+  visibility: hidden;
+  opacity: 0;
+}
+
+.description-close {
+  position: absolute;
+  top: 0;
+  right: 5%;
+}
+
+.description-close i {
+  font-size: 30px;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+.work-description {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+  max-width: 750px;
+  left: 0;
+	right: 0;
+	margin-left: auto;
+ 	margin-right: auto;
+  z-index: 100;
+}
+
+.work-description p {
+  width: 90%;
+  margin: 30px auto 10px;
+  padding: 15px 10px 10px;
+  text-align: left;
+}
+
+.description-footer {
+  width: 90%;
+  padding: 0 10px;
+  margin: 0 auto;
+}
+
+.description-footer div a {
+  text-align: center;
+  border: solid 1px white;
+  color: white;
+  padding: 0.5rem;
+  line-height: 2.5rem;
+  font-size: 90%;
+  font-weight: 200;
 }
 
 /*********** SKILLS *************/
@@ -140,8 +214,6 @@
 
 .code-skills .content {
   padding: 3rem 0;
-  width: 90vw;
-  margin: 0 auto;
 }
 
 .code-skills p {
@@ -157,8 +229,6 @@
 
 .code-contact .content {
   padding: 0 0 1rem;
-  width: 90vw;
-  margin: 0 auto;
 }
 
 .code-contact p {
@@ -177,6 +247,6 @@
 /******** LANDSCAPE MODE ********/
 @media only screen and (orientation: landscape) {
   .code-about {
-    padding-top: 0;
+    padding-top: 15px;
   }
 }

@@ -11,3 +11,11 @@ require('./controllers/code_controller')(app);
 app.controller('AppController', function() {
   const _this = this;
 });
+
+app.directive('projects', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: 'templates/project.html'
+  }
+});

@@ -68,8 +68,8 @@ module.exports = {
       image: 'images/dota_draft.jpg',
       description: 'I did this project in my time between the Code 301 and Code 401 courses as a logic exercise. The basic idea is that each hero does well against certain other heroes, poorly against others, and synergize with some. So, as you input heroes for the enemy team, counter picks get highlighted in red, and as you pick heroes for your team, synergistic heroes are highlighted in green. I used Page.js, Handlebars.js, and jQuery for this project.',
       link: {
-        page: '',
-        github: ''
+        page: 'dotadraft.s3-website-us-west-2.amazonaws.com',
+        github: 'https://github.com/setheid/dota-draft'
       }
     }
   ]

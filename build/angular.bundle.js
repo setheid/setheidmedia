@@ -32130,7 +32130,7 @@
 	    date: 'February 2016',
 	    tech: [techs.page, techs.handlebars, techs.jquery, techs.html5, techs.css3],
 	    image: 'images/dota_draft.jpg',
-	    description: 'Dota Draft done in February. Different text than the other two.',
+	    description: 'I did this project in my time between the Code 301 and Code 401 courses as a logic exercise. The basic idea is that each hero does well against certain other heroes, poorly against others, and synergize with some. So, as you input heroes for the enemy team, counter picks get highlighted in red, and as you pick heroes for your team, synergistic heroes are highlighted in green. I used Page.js, Handlebars.js, and jQuery for this project.',
 	    link: {
 	      page: '',
 	      github: ''

@@ -50,7 +50,7 @@ module.exports = {
       image: 'images/marvelexplorer.jpg',
       description: 'For this project I teamed up with students from the Code 401 Python course at Code Fellows; they built out the back-end and my classmate, Alemneh Asefa, and I developed the front-end. I designed the overall layout of the site, choosing the Bootstrap theme we would work with and setting up the basic header, navigation bar, main body, and footer designs. My areas of focus were the home page, the sign in/up popup, and the "Find a Character" section. For the "Find a Character" section I wrote the logic for the questionnaire filter. I used AngularJS and jQuery for this project and bundled the JavaScript and CSS using Gulp.js and Webpack.',
       link: {
-        page: 'marvelexplorer.s3-website-us-west-2.amazonaws.com',
+        page: 'http://marvelexplorer.s3-website-us-west-2.amazonaws.com',
         github: 'https://github.com/setheid/marvel-explorer'
       }
     },
@@ -68,7 +68,7 @@ module.exports = {
       image: 'images/dota_draft.jpg',
       description: 'I did this project in my time between the Code 301 and Code 401 courses as a logic exercise. The basic idea is that each hero does well against certain other heroes, poorly against others, and synergize with some. So, as you input heroes for the enemy team, counter picks get highlighted in red, and as you pick heroes for your team, synergistic heroes are highlighted in green. I used Page.js, Handlebars.js, and jQuery for this project.',
       link: {
-        page: 'dotadraft.s3-website-us-west-2.amazonaws.com',
+        page: 'http://dotadraft.s3-website-us-west-2.amazonaws.com',
         github: 'https://github.com/setheid/dota-draft'
       }
     }

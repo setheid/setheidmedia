@@ -7,12 +7,12 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
     <link rel="stylesheet" href="vendors/jquery.fullPage.css" charset="utf-8">
     <link rel="stylesheet" href="styles.min.css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="responsive.min.css" media="screen" charset="utf-8">
-    <!-- <link rel="stylesheet" href="nav.css" media="screen" charset="utf-8">
+    <!-- <link rel="stylesheet" href="nav.css" media="screen" charset="utf-8"> -->
     <link rel="stylesheet" href="code_main.css" media="screen" charset="utf-8">
-    <link rel="stylesheet" href="code_foot.css" media="screen" charset="utf-8">
+    <!-- <link rel="stylesheet" href="code_foot.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="code_desktop.css" media="screen" charset="utf-8">
     <link rel="stylesheet" href="nav_desktop.css" media="screen" charset="utf-8"> -->
+    <link rel="stylesheet" href="responsive.min.css" media="screen" charset="utf-8">
 
     <title>Seth's Portfolio</title>
   </head>
@@ -23,9 +23,9 @@
         <div class="brand">
           <span>Seth Moore</span>
         </div>
-        <button data-ng-click="navCtrl.toggleNavDropdown()" type="button" class="navbar-toggle">
+        <div data-ng-click="navCtrl.toggleNavDropdown()" class="navbar-toggle">
           <span class="hamburger-bar"></span>
-        </button>
+        </div>
         <div class="tabs">
           <ul>
             <li>setheidmedia.com</li>
@@ -40,6 +40,7 @@
       <main>
         <!-- CODE SECTION CONTROLLER -->
         <div data-ng-init="codeCtrl.fullPageInit()" data-ng-controller="CodeController as codeCtrl" class="code container">
+
           <!-- FULLPAGE -->
           <div id="fullpage">
             <section class="code-about section">
@@ -57,45 +58,7 @@
             </section>
 
             <section class="code-work section">
-              <div class="slide" data-anchor="project1">
-                <div class="content">
-                  <h1>Work</h1>
-                  <h2>Code Fellows<br/>Package Manager and CLI</h2>
-                  <h3>April 2016</h3>
-                  <h3><a target="_blank" href="https://www.npmjs.com/package/cfpm">npmjs.com/package/cfpm</a><a target="_blank" href="https://www.npmjs.com/package/cfpm-cli"> [-cli]</a></h3>
-                  <span><a target="_blank" href="https://nodejs.org"><img src="images/nodejs_logo.png" alt="" /></a></span>
-                  <span><a target="_blank" href="http://expressjs.com/"><img src="images/expressjs_logo.png" alt="" /></a></span>
-                  <br/>
-                  <span><a href="https://www.npmjs.com/package/commander">Commander.js</a>, </span>
-                  <span><a href="https://github.com/visionmedia/superagent">Superagent.js</a></span>
-                  <figure class="cfpm-gif"><img src="images/cfpm.gif" alt="" /></figure>
-                  <div class="work-description">
-                    <p>
-
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="slide" data-anchor="project2">
-                <div class="content">
-                  <h1>Work</h1>
-                  <h2>Marvel Explorer</h2>
-                  <h3>May 2016</h3>
-                  <h3><a target="_blank" href="http://marvelexplorer.s3-website-us-west-2.amazonaws.com">http://marvelexplorer.s3-website-us-west-2.amazonaws.com</a></h3>
-                  <span><a target="_blank" href="https://angularjs.org/"><img src="images/angular_logo.png" alt="" /></a></span>
-                  <span><a target="_blank" href="http://getbootstrap.com/"><img src="images/bootstrap_logo.png" alt="" /></a></span>
-                  <span><a target="_blank" href="http://gulpjs.com/"><img src="images/gulp_logo.png" alt="" /></a></span>
-                  <span><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5"><img src="images/html5_logo.png" alt="" /></a></span>
-                  <span><a target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS3"><img src="images/css3_logo.png" alt="" /></a></span>
-                  <figure class="marvel-img"><img src="images/marvelexplorer.jpg" alt="" /></figure>
-                  <div class="work-description">
-                    <p>
-
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <projects>Loading...</projects>
             </section>
 
             <section class="code-skills section">

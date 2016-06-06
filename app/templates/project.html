@@ -1,21 +1,9 @@
 <div data-ng-repeat="project in codeCtrl.projects" class="slide" data-anchor="project{{project.id}}">
   <div class="content">
     <h1>Work</h1>
-    <h2 data-ng-click="showDescription = !showDescription">{{project.name}} <i class="fa fa-info-circle" aria-hidden="true"></i></h2>
+    <h2 data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription; codeCtrl.modal(project.id)">{{project.name}} <i class="fa fa-info-circle" aria-hidden="true"></i></h2>
     <h3>{{project.date}}</h3>
     <figure class="work-img"><img src="{{project.image}}" alt="" /></figure>
     <span data-ng-repeat="tech in project.tech"><a target="_blank" href="{{tech.link}}">{{tech.name}}</a></span>
-  </div>
-  <div ng-class="{'hidden':!showDescription}" class="description-wrapper" style="{{project.id==1 ? 'left:0' : project.id==2 ? 'left:33.33%' : 'left:66.66%'}}">
-    <div class="work-description">
-      <div data-ng-click="showDescription = !showDescription" class="description-close"><i class="fa fa-times" aria-hidden="true"></i></div>
-      <p>
-        {{project.description}}
-      </p>
-      <div class="description-footer">
-        <div class="left"><a target="_blank" href="{{project.link.page}}">WEBPAGE</a></div>
-        <div class="right"><a target="_blank" href="{{project.link.github}}">GITHUB REPO</a></div>
-      </div>
-    </div>
   </div>
 </div>

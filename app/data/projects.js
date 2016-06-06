@@ -48,7 +48,7 @@ module.exports = {
         techs.css3
       ],
       image: 'images/marvelexplorer.jpg',
-      description: 'For this project I teamed up with students from the Code 401 Python course at Code Fellows; they built out the back-end and my classmate, Alemneh Asefa, and I developed the front-end. I designed the overall layout of the site, choosing the Bootstrap theme we would work with and setting up the basic header, navigation bar, main body, and footer designs. My areas of focus were the home page, the sign in/up popup, and the "Find a Character" section. For the "Find a Character" section I wrote the logic for the questionnaire filter. I used AngularJS and jQuery for this project and bundled the JavaScript and CSS using Gulp.js and Webpack.',
+      description: 'For this project I teamed up with students from the Code 401 Python course at Code Fellows; they built out the back-end and my classmate, Alemneh Asefa, and I developed the front-end. I designed the overall layout of the site, choosing the Bootstrap theme we would work with and setting up the basic header, navigation bar, main body, and footer designs. My areas of focus were the home page, the sign in/up popup, and the "Find a Character" section. I used AngularJS and jQuery for this project and bundled the JavaScript and CSS using Gulp.js and Webpack.',
       link: {
         page: 'http://marvelexplorer.s3-website-us-west-2.amazonaws.com',
         github: 'https://github.com/setheid/marvel-explorer'

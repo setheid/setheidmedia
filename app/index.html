@@ -58,7 +58,7 @@
             </section>
 
             <section class="code-work section">
-              <projects>Loading...</projects>
+              <projects></projects>
             </section>
 
             <section class="code-skills section">
@@ -106,23 +106,32 @@
                 <a href="#about">
                   <span>ABOUT</span>
                 </a>
-              </li><!--
-           --><li data-menuanchor="work">
+              </li><li data-menuanchor="work">
                 <a href="#work">
                   <span>WORK</span>
                 </a>
-              </li><!--
-           --><li data-menuanchor="skills">
+              </li><li data-menuanchor="skills">
                 <a href="#skills">
                   <span>SKILLS</span>
                 </a>
-              </li><!--
-           --><li data-menuanchor="contact">
+              </li><li data-menuanchor="contact">
                 <a href="#contact">
                   <span>CONTACT</span>
                 </a>
               </li>
             </ul>
+          </div>
+          <div ng-class="{'show':codeCtrl.showDescription}" class="description-wrapper">
+            <div class="work-description">
+              <div data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription" class="description-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+              <p>
+                {{codeCtrl.project.description}}
+              </p>
+              <div class="description-footer">
+                <div class="left"><a target="_blank" href="{{codeCtrl.project.link.page}}">WEBPAGE</a></div>
+                <div class="right"><a target="_blank" href="{{codeCtrl.project.link.github}}">GITHUB REPO</a></div>
+              </div>
+            </div>
           </div>
         <!-- END CODE SECTION -->
         </div>

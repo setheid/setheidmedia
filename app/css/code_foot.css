@@ -6,9 +6,9 @@
   width: 100vw;
   height: 50px;
   background-color: #333333;
-  z-index: 1000;
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
+  z-index: 1000;
 }
 
 .code .foot.nav-open {

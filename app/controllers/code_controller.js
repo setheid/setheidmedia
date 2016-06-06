@@ -52,10 +52,10 @@ app.controller('CodeController', ['$timeout', function($timeout) {
 
   _this.projects = require('./../data/projects').projects;
 
-  // _this.showDescription = false;
-  // _this.toggleDescription = function() {
-  //
-  // }
+  _this.project = {};
+  _this.modal = function(id) {
+    _this.project = _this.projects[id-1];
+  }
 
 }]);
 

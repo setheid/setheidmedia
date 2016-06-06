@@ -137,27 +137,31 @@
 
 /******* PROJECT DESCRIPTION *******/
 .description-wrapper {
-  visibility: visible;
-  opacity: 1;
-  position: absolute;
+  position: fixed;
   display: block;
-  top: 0;
-  left: 0;
-  width: 33.33%;
-  height: 100%;
-  background-color: #1D1D1D;
-  -webkit-transition:  visibility 0.5s, opacity 0.5s ease;
-  transition: visibility 0.5s, opacity 0.5s ease;
-}
-
-.description-wrapper.hidden {
   visibility: hidden;
   opacity: 0;
+  color: white;
+  overflow-y: scroll;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /*background-color: #1D1D1D;*/
+  background-color: rgba(0, 0, 0, 0.7);
+  -webkit-transition:  visibility 0.5s, opacity 0.5s ease;
+  transition: visibility 0.5s, opacity 0.5s ease;
+  z-index: 9999;
+}
+
+.description-wrapper.show {
+  visibility: visible;
+  opacity: 1;
 }
 
 .description-close {
   position: absolute;
-  top: 0;
+  top: 1rem;
   right: 5%;
 }
 
@@ -169,15 +173,15 @@
 
 .work-description {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  top: 1rem;
   width: 100%;
   max-width: 750px;
   left: 0;
 	right: 0;
 	margin-left: auto;
  	margin-right: auto;
-  z-index: 100;
+  padding-bottom: 1rem;
+  background-color: #1D1D1D;
 }
 
 .work-description p {

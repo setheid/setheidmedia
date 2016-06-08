@@ -19,3 +19,10 @@ app.directive('projects', function() {
     templateUrl: 'templates/project.html'
   }
 });
+
+app.config(['$routeProvider', function(router) {
+  router
+  .when('/', {
+    templateUrl: 'views/code.html'
+  })
+}]);

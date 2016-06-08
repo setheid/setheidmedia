@@ -1,6 +1,7 @@
 module.exports = function(app) {
 
-app.controller('CodeController', ['$timeout', function($timeout) {
+app.controller('CodeController', ['$timeout', '$location', '$anchorScroll',
+function($timeout, $location, $anchorScroll) {
   const _this = this;
 
   _this.fullPageInit = function() {
@@ -9,12 +10,13 @@ app.controller('CodeController', ['$timeout', function($timeout) {
         anchors:['about', 'work', 'skills', 'contact'],
         menu: '#code-nav',
         animateAnchor: false,
+        lockAnchors: true,
         responsiveWidth: 750,
         fitToSection: false,
         touchSensitivity: 15,
         scrollOverflow: false,
         scrollingSpeed: 800,
-        // paddingBottom: '50px',
+        recordHistory: false,
         onLeave: function(index, nextIndex, direction) {
           var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
 
@@ -56,6 +58,11 @@ app.controller('CodeController', ['$timeout', function($timeout) {
   _this.modal = function(id) {
     _this.project = _this.projects[id-1];
   }
+
+  _this.pageScroll = function(section) {
+    console.log(section);
+    $.fn.fullpage.moveTo(section);
+  };
 
 }]);
 

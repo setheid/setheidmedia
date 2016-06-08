@@ -66,6 +66,12 @@
 	  };
 	});
 
+	app.config(['$routeProvider', function (router) {
+	  router.when('/', {
+	    templateUrl: 'views/code.html'
+	  });
+	}]);
+
 /***/ },
 /* 1 */
 /***/ function(module, exports, __webpack_require__) {
@@ -30960,7 +30966,7 @@
 /***/ function(module, exports) {
 
 	/**
-	 * @license AngularJS v1.5.5
+	 * @license AngularJS v1.5.6
 	 * (c) 2010-2016 Google, Inc. http://angularjs.org
 	 * License: MIT
 	 */
@@ -31565,35 +31571,7 @@
 	        }
 
 	        $q.when(nextRoute).
-	          then(function() {
-	            if (nextRoute) {
-	              var locals = angular.extend({}, nextRoute.resolve),
-	                  template, templateUrl;
-
-	              angular.forEach(locals, function(value, key) {
-	                locals[key] = angular.isString(value) ?
-	                    $injector.get(value) : $injector.invoke(value, null, null, key);
-	              });
-
-	              if (angular.isDefined(template = nextRoute.template)) {
-	                if (angular.isFunction(template)) {
-	                  template = template(nextRoute.params);
-	                }
-	              } else if (angular.isDefined(templateUrl = nextRoute.templateUrl)) {
-	                if (angular.isFunction(templateUrl)) {
-	                  templateUrl = templateUrl(nextRoute.params);
-	                }
-	                if (angular.isDefined(templateUrl)) {
-	                  nextRoute.loadedTemplateUrl = $sce.valueOf(templateUrl);
-	                  template = $templateRequest(templateUrl);
-	                }
-	              }
-	              if (angular.isDefined(template)) {
-	                locals['$template'] = template;
-	              }
-	              return $q.all(locals);
-	            }
-	          }).
+	          then(resolveLocals).
 	          then(function(locals) {
 	            // after route change
 	            if (nextRoute == $route.current) {
@@ -31609,6 +31587,41 @@
 	            }
 	          });
 	      }
+	    }
+
+	    function resolveLocals(route) {
+	      if (route) {
+	        var locals = angular.extend({}, route.resolve);
+	        angular.forEach(locals, function(value, key) {
+	          locals[key] = angular.isString(value) ?
+	              $injector.get(value) :
+	              $injector.invoke(value, null, null, key);
+	        });
+	        var template = getTemplateFor(route);
+	        if (angular.isDefined(template)) {
+	          locals['$template'] = template;
+	        }
+	        return $q.all(locals);
+	      }
+	    }
+
+
+	    function getTemplateFor(route) {
+	      var template, templateUrl;
+	      if (angular.isDefined(template = route.template)) {
+	        if (angular.isFunction(template)) {
+	          template = template(route.params);
+	        }
+	      } else if (angular.isDefined(templateUrl = route.templateUrl)) {
+	        if (angular.isFunction(templateUrl)) {
+	          templateUrl = templateUrl(route.params);
+	        }
+	        if (angular.isDefined(templateUrl)) {
+	          route.loadedTemplateUrl = $sce.valueOf(templateUrl);
+	          template = $templateRequest(templateUrl);
+	        }
+	      }
+	      return template;
 	    }
 
 
@@ -32019,7 +32032,7 @@
 
 	module.exports = function (app) {
 
-	  app.controller('CodeController', ['$timeout', function ($timeout) {
+	  app.controller('CodeController', ['$timeout', '$location', '$anchorScroll', function ($timeout, $location, $anchorScroll) {
 	    var _this = this;
 
 	    _this.fullPageInit = function () {
@@ -32028,12 +32041,13 @@
 	          anchors: ['about', 'work', 'skills', 'contact'],
 	          menu: '#code-nav',
 	          animateAnchor: false,
+	          lockAnchors: true,
 	          responsiveWidth: 750,
 	          fitToSection: false,
 	          touchSensitivity: 15,
 	          scrollOverflow: false,
 	          scrollingSpeed: 800,
-	          // paddingBottom: '50px',
+	          recordHistory: false,
 	          onLeave: function onLeave(index, nextIndex, direction) {
 	            var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
 
@@ -32074,6 +32088,11 @@
 	    _this.project = {};
 	    _this.modal = function (id) {
 	      _this.project = _this.projects[id - 1];
+	    };
+
+	    _this.pageScroll = function (section) {
+	      console.log(section);
+	      $.fn.fullpage.moveTo(section);
 	    };
 	  }]);
 	};

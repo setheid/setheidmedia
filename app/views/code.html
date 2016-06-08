@@ -1,9 +1,96 @@
-<section>
-  <h1></h1>
-  <div class="code-projects">
-    <figure>
-      <img src="" alt="" />
-    </figure>
-    <figcaption></figcaption>
+<section data-ng-init="codeCtrl.fullPageInit()" data-ng-controller="CodeController as codeCtrl" class="code container">
+
+  <!-- FULLPAGE -->
+  <div id="fullpage">
+    <section class="code-about section">
+      <div class="content">
+        <h1>Seth Moore</h1>
+        <figure><div class="profile-pic"></div></figure>
+        <p>
+          I am a client focused, full stack web developer hoping to make the world a better
+          place by presenting quality products and services through the art of clean and concise
+          code. My background as a musician and audio engineer has provided a basis for quickly
+          understanding complex systems and operations and has taught me much about my creative
+          process which influences the way I approach development.
+        </p>
+      </div>
+    </section>
+
+    <section class="code-work section">
+      <projects></projects>
+    </section>
+
+    <section class="code-skills section">
+      <div class="content">
+        <h1>Skills</h1>
+        <p>
+          I have an ever increasing range of skills. I have a genuine appreciation
+          for front-end development and making use of HTML5, CSS3, JavaScript(ES6, ES5),
+          jQuery, responsive design and UX principals, and learning the numberous
+          frameworks and build tools brings me great enjoyment.
+        </p>
+        <p>
+          I have experience
+          with back-end development as well: I've used Node.js and Express.js
+          to build RESTful APIs, created an app that interfaces with a NoSQL database (MongoDB)
+          requiring authorization for restricted routes, and designed a command line interface
+          primarily using Commander.js and Superagent.js, to name a few of my recent projects.
+        </p>
+        <p>
+          I'm very interested in all that's happening with the front-end frameworks right now,
+          specifically Ember.js, React.js, and AngularJS. It's an exciting time to be a developer
+          and I'm looking forward to what the future brings!
+        </p>
+      </div>
+    </section>
+
+    <section class="code-contact section">
+      <div class="content">
+        <h1>Contact</h1>
+        <p>
+          Checkout my GitHub, Instagram, or <br/> LinkedIn, or send me an email at <br/> setheid@gmail.com.
+        </p>
+        <span><a target="_blank" href="https://github.com/setheid"><i class="fa fa-github" aria-hidden="true"></i></a></span>
+        <span><a target="_blank" href="https://www.instagram.com/setheid/"><i class="fa fa-instagram" aria-hidden="true"></i></a></span>
+        <span><a target="_blank" href="https://www.linkedin.com/in/sethrmoore"><i class="fa fa-linkedin-square" aria-hidden="true"></i></a></span>
+      </div>
+    </section>
+  </div>
+  <!-- END FULLPAGE -->
+
+  <!-- CODE FOOTER -->
+  <div class="foot">
+    <ul id="code-nav">
+      <li data-menuanchor="about">
+        <a data-ng-click="codeCtrl.pageScroll(1)">
+          <span>ABOUT</span>
+        </a>
+      </li><li data-menuanchor="work">
+        <a data-ng-click="codeCtrl.pageScroll(2)">
+          <span>WORK</span>
+        </a>
+      </li><li data-menuanchor="skills">
+        <a data-ng-click="codeCtrl.pageScroll(3)">
+          <span>SKILLS</span>
+        </a>
+      </li><li data-menuanchor="contact">
+        <a data-ng-click="codeCtrl.pageScroll(4)">
+          <span>CONTACT</span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- MODAL OVERLAY -->
+  <div ng-class="{'show':codeCtrl.showDescription}" class="description-wrapper">
+    <div class="work-description">
+      <div data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription" class="description-close"><i class="fa fa-times" aria-hidden="true"></i></div>
+      <p>
+        {{codeCtrl.project.description}}
+      </p>
+      <div class="description-footer">
+        <div class="left"><a target="_blank" href="{{codeCtrl.project.link.page}}">WEBPAGE</a></div>
+        <div class="right"><a target="_blank" href="{{codeCtrl.project.link.github}}">GITHUB REPO</a></div>
+      </div>
+    </div>
   </div>
 </section>

@@ -108,15 +108,15 @@
   width: 250px;
   height: 100%;
   font-size: 120%;
-  box-shadow: none;
-  z-index: 1500;
+  /*box-shadow: none;*/
+  /*z-index: 1500;*/
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
 .tabs.nav-open {
   left: 0;
-  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
+  /*box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);*/
 }
 
 .tabs ul {
@@ -136,11 +136,12 @@
 }
 
 .tabs li:first-child {
-  height: 60px;
+  height: 50px;
   font-size: 90%;
   font-weight: 100;
-  line-height: 60px;
+  line-height: 50px;
   border: none;
+  padding: 0;
   background-color: transparent;
   text-align: center;
   color: #B7B7B7;

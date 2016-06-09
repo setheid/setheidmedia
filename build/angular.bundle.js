@@ -50,13 +50,21 @@
 	__webpack_require__(3);
 
 	var app = angular.module('app', ['ngRoute']);
-	/******** Controllers *********/
+	// Services
 	__webpack_require__(5)(app);
+	// Controllers
 	__webpack_require__(6)(app);
+	__webpack_require__(7)(app);
 
-	app.controller('AppController', function () {
+	/******** APPLICATION *********/
+	app.controller('AppController', ['FullPageInit', function (FullPageInit) {
 	  var _this = this;
-	});
+	  var fpInit = FullPageInit();
+	  _this.removeFullPage = function () {
+	    fpInit.setInit();
+	    $.fn.fullpage.destroy('all');
+	  };
+	}]);
 
 	app.directive('projects', function () {
 	  return {
@@ -69,6 +77,12 @@
 	app.config(['$routeProvider', function (router) {
 	  router.when('/', {
 	    templateUrl: 'views/code.html'
+	  }).when('/audio', {
+	    templateUrl: 'views/under_construction.html'
+	  }).when('/images', {
+	    templateUrl: 'views/under_construction.html'
+	  }).when('/about', {
+	    templateUrl: 'views/under_construction.html'
 	  });
 	}]);
 
@@ -32006,6 +32020,31 @@
 	'use strict';
 
 	module.exports = function (app) {
+	  app.factory('FullPageInit', function () {
+	    var initialized = false;
+
+	    var fpInit = function fpInit() {
+	      this.isInit = initialized;
+	    };
+
+	    fpInit.prototype.setInit = function () {
+	      initialized = !initialized;
+	      this.isInit = initialized;
+	    };
+
+	    return function () {
+	      return new fpInit();
+	    };
+	  });
+	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
 
 	  app.controller('NavController', function () {
 	    var _this = this;
@@ -32025,65 +32064,36 @@
 	};
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	module.exports = function (app) {
 
-	  app.controller('CodeController', ['$timeout', '$location', '$anchorScroll', function ($timeout, $location, $anchorScroll) {
+	  app.controller('CodeController', ['$location', '$anchorScroll', function ($location, $anchorScroll) {
 	    var _this = this;
+	    _this.loaded = false;
 
-	    _this.fullPageInit = function () {
-	      $timeout(function () {
-	        $('#fullpage').fullpage({
-	          anchors: ['about', 'work', 'skills', 'contact'],
-	          menu: '#code-nav',
-	          animateAnchor: false,
-	          lockAnchors: true,
-	          responsiveWidth: 750,
-	          fitToSection: false,
-	          touchSensitivity: 15,
-	          scrollOverflow: false,
-	          scrollingSpeed: 800,
-	          recordHistory: false,
-	          onLeave: function onLeave(index, nextIndex, direction) {
-	            var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+	    _this.highlightInit = function () {
+	      var anchor, $activeTab, activeTabPosition;
 
-	            activeAnchor = $('.code .section').eq(nextIndex - 1).data('anchor');
-	            $activeTab = $('li[data-menuanchor=\'' + activeAnchor + '\']');
-	            activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
+	      $activeTab = $('li.active');
 
-	            $('.highlight').css({ 'left': activeTabPosition });
-	          }
-	        });
+	      activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
 
-	        var urlArray, anchor, $activeTab, activeTabPosition;
+	      $('.foot ul').append('<li class="highlight"></li>');
+	      $('.highlight').css({ 'left': activeTabPosition });
 
-	        if (window.location.pathname == '/') {
-	          $activeTab = $('li[data-menuanchor="about"]');
-	        } else {
-	          urlArray = window.location.href.split('/');
-	          anchor = urlArray[urlArray.length - 1].slice(1);
-	          $activeTab = $('li[data-menuanchor=\'' + anchor + '\']');
-	        }
+	      $('.foot li').on('click', function () {
+	        $activeTab = $(this);
+	        var newPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
 
-	        activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
-
-	        $('.foot ul').append('<li class="highlight"></li>');
-	        $('.highlight').css({ 'left': activeTabPosition });
-
-	        $('.foot li').on('click', function () {
-	          $activeTab = $(this);
-	          var newPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
-
-	          $('.highlight').css({ 'left': newPosition });
-	        });
-	      }, 500);
+	        $('.highlight').css({ 'left': newPosition });
+	      });
 	    };
 
-	    _this.projects = __webpack_require__(7).projects;
+	    _this.projects = __webpack_require__(8).projects;
 
 	    _this.project = {};
 	    _this.modal = function (id) {
@@ -32091,14 +32101,56 @@
 	    };
 
 	    _this.pageScroll = function (section) {
-	      console.log(section);
 	      $.fn.fullpage.moveTo(section);
+	    };
+	  }]);
+
+	  app.directive('loadSlides', ['FullPageInit', function (FullPageInit) {
+	    var fpInit = FullPageInit();
+
+	    return function (scope, element, attrs) {
+	      if (scope.$last) {
+	        if (!fpInit.isInit) {
+	          fpInit.setInit();
+	          fpInitialize();
+	        } else {
+
+	          $.fn.fullpage.destroy('all');
+	          fpInitialize();
+	        }
+	      }
 	    };
 	  }]);
 	};
 
+	function fpInitialize() {
+	  console.log('load init');
+	  $('#fullpage').fullpage({
+	    anchors: ['about', 'work', 'skills', 'contact'],
+	    menu: '#code-nav',
+	    animateAnchor: false,
+	    lockAnchors: true,
+	    responsiveWidth: 750,
+	    fitToSection: false,
+	    touchSensitivity: 15,
+	    scrollOverflow: false,
+	    scrollingSpeed: 800,
+	    recordHistory: false,
+	    onLeave: function onLeave(index, nextIndex, direction) {
+	      var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+
+	      activeAnchor = $('.code .section').eq(nextIndex - 1).data('anchor');
+	      $activeTab = $('li[data-menuanchor=\'' + activeAnchor + '\']');
+	      activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
+
+	      $('.highlight').css({ 'left': activeTabPosition });
+	    }
+	  });
+	  $.fn.fullpage.reBuild();
+	}
+
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';

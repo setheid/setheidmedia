@@ -1,5 +1,5 @@
-<div data-ng-repeat="project in codeCtrl.projects" class="slide" data-anchor="project{{project.id}}">
-  <div class="content">
+<div data-ng-repeat="project in codeCtrl.projects" class="slide" data-anchor="project{{project.id}}" load-slides>
+  <div class="content" data-ng-init="codeCtrl.loaded=true">
     <h1>Work</h1>
     <h2 data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription; codeCtrl.modal(project.id)">{{project.name}} <i class="fa fa-info-circle" aria-hidden="true"></i></h2>
     <h3>{{project.date}}</h3>

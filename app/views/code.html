@@ -1,4 +1,4 @@
-<section data-ng-init="codeCtrl.fullPageInit()" data-ng-controller="CodeController as codeCtrl" class="code container">
+<section data-ng-show="codeCtrl.loaded" data-ng-controller="CodeController as codeCtrl" data-ng-init="codeCtrl.highlightInit()" class="code container">
 
   <!-- FULLPAGE -->
   <div id="fullpage">
@@ -10,7 +10,7 @@
           I am a client focused, full stack web developer hoping to make the world a better
           place by presenting quality products and services through the art of clean and concise
           code. My background as a musician and audio engineer has provided a basis for quickly
-          understanding complex systems and operations and has taught me much about my creative
+          understanding complex systems and operations and taught me much about my creative
           process which influences the way I approach development.
         </p>
       </div>
@@ -25,8 +25,8 @@
         <h1>Skills</h1>
         <p>
           I have an ever increasing range of skills. I have a genuine appreciation
-          for front-end development and making use of HTML5, CSS3, JavaScript(ES6, ES5),
-          jQuery, responsive design and UX principals, and learning the numberous
+          for front-end development and continuing to learn about JavaScript(ES6, ES5),
+          jQuery, HTML5, CSS3, responsive design and UX principals, and getting know the numberous
           frameworks and build tools brings me great enjoyment.
         </p>
         <p>
@@ -61,7 +61,7 @@
   <!-- CODE FOOTER -->
   <div class="foot">
     <ul id="code-nav">
-      <li data-menuanchor="about">
+      <li data-menuanchor="about" class="active">
         <a data-ng-click="codeCtrl.pageScroll(1)">
           <span>ABOUT</span>
         </a>

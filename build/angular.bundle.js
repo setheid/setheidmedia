@@ -55,19 +55,14 @@
 	// Controllers
 	__webpack_require__(6)(app);
 	__webpack_require__(7)(app);
+	__webpack_require__(9)(app);
+	__webpack_require__(10)(app);
+	__webpack_require__(11)(app);
 
 	/******** APPLICATION *********/
-	app.controller('AppController', ['FullPageInit', function (FullPageInit) {
+	app.controller('AppController', function () {
 	  var _this = this;
-	  var fpInit = FullPageInit();
-
-	  _this.removeFullPage = function () {
-	    if (fpInit.getInit() == true) {
-	      $.fn.fullpage.destroy('all');
-	      fpInit.setInit(false);
-	    }
-	  };
-	}]);
+	});
 
 	app.directive('projects', function () {
 	  return {
@@ -81,11 +76,14 @@
 	  router.when('/', {
 	    templateUrl: 'views/code.html'
 	  }).when('/audio', {
-	    templateUrl: 'views/under_construction.html'
+	    templateUrl: 'views/under_construction.html',
+	    controller: 'AudioController'
 	  }).when('/images', {
-	    templateUrl: 'views/under_construction.html'
+	    templateUrl: 'views/under_construction.html',
+	    controller: 'ImagesController'
 	  }).when('/about', {
-	    templateUrl: 'views/under_construction.html'
+	    templateUrl: 'views/under_construction.html',
+	    controller: 'AboutController'
 	  });
 	}]);
 
@@ -32205,6 +32203,66 @@
 	      github: 'https://github.com/setheid/dota-draft'
 	    }
 	  }]
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('AudioController', ['FullPageInit', function (FullPageInit) {
+	    var _this = this;
+
+	    // to handle the browser going back
+	    var fpInit = FullPageInit();
+	    if (fpInit.getInit() == true) {
+	      fpInit.setInit(false);
+	      $.fn.fullpage.destroy('all');
+	    }
+	  }]);
+	};
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('ImagesController', ['FullPageInit', function (FullPageInit) {
+	    var _this = this;
+
+	    // to handle the browser going back
+	    var fpInit = FullPageInit();
+	    if (fpInit.getInit() == true) {
+	      fpInit.setInit(false);
+	      $.fn.fullpage.destroy('all');
+	    }
+	  }]);
+	};
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('AboutController', ['FullPageInit', function (FullPageInit) {
+	    var _this = this;
+
+	    // to handle the browser going back
+	    var fpInit = FullPageInit();
+	    if (fpInit.getInit() == true) {
+	      fpInit.setInit(false);
+	      $.fn.fullpage.destroy('all');
+	    }
+	  }]);
 	};
 
 /***/ }

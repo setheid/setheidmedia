@@ -5,7 +5,6 @@ function($location, $anchorScroll) {
   const _this = this;
   _this.loaded = false;
 
-
   _this.highlightInit = function() {
     var anchor, $activeTab, activeTabPosition;
 
@@ -48,7 +47,7 @@ app.directive('loadSlides', ['FullPageInit', function(FullPageInit) {
       }
     }
   }
-  
+
 }]);
 
 }

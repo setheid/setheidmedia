@@ -9,20 +9,15 @@ require('./services/fullpage_init')(app);
   // Controllers
 require('./controllers/nav_controller')(app);
 require('./controllers/code_controller')(app);
+require('./controllers/audio_controller')(app);
+require('./controllers/images_controller')(app);
+require('./controllers/about_controller')(app);
 
 /******** APPLICATION *********/
-app.controller('AppController', ['FullPageInit', function(FullPageInit) {
+app.controller('AppController', function() {
   const _this = this;
-  var fpInit = FullPageInit();
 
-  _this.removeFullPage = function() {
-    if (fpInit.getInit() == true) {
-      $.fn.fullpage.destroy('all');
-      fpInit.setInit(false);
-    }
-  };
-  
-}]);
+});
 
 app.directive('projects', function() {
   return {
@@ -38,12 +33,15 @@ app.config(['$routeProvider', function(router) {
     templateUrl: 'views/code.html'
   })
   .when('/audio', {
-    templateUrl: 'views/under_construction.html'
+    templateUrl: 'views/under_construction.html',
+    controller: 'AudioController'
   })
   .when('/images', {
-    templateUrl: 'views/under_construction.html'
+    templateUrl: 'views/under_construction.html',
+    controller: 'ImagesController'
   })
   .when('/about', {
-    templateUrl: 'views/under_construction.html'
+    templateUrl: 'views/under_construction.html',
+    controller: 'AboutController'
   })
 }]);

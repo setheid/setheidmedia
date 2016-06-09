@@ -108,15 +108,13 @@
   width: 250px;
   height: 100%;
   font-size: 120%;
-  box-shadow: none;
-  z-index: 1500;
+  box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.5);
   -webkit-transition: all 0.5s ease;
   transition: all 0.5s ease;
 }
 
 .tabs.nav-open {
   left: 0;
-  box-shadow: 5px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .tabs ul {
@@ -125,22 +123,23 @@
 }
 
 .tabs li {
-  border-top: 2px solid rgba(206, 206, 206, 0.1);
-  border-bottom: 2px solid rgba(21, 21, 21, 0.5);
+  border-top: 2px solid #333333;
+  border-bottom: 2px solid #191919;
   background-color: rgba(72, 72, 72, 0.3);
   position: relative;
   display: block;
   vertical-align: middle;
-  padding: 0.5rem 0.75rem;
+  /*padding: 0.5rem 0.75rem;*/
   cursor: pointer;
 }
 
 .tabs li:first-child {
-  height: 60px;
+  height: 50px;
   font-size: 90%;
   font-weight: 100;
-  line-height: 60px;
+  line-height: 50px;
   border: none;
+  padding: 0;
   background-color: transparent;
   text-align: center;
   color: #B7B7B7;
@@ -150,6 +149,9 @@
 .tabs a {
   color: #B7B7B7;
   transition: all 0.1s;
+  height: 50px;
+  line-height: 50px;
+  padding-left: 0.75rem;
 }
 
 .tabs a:hover {

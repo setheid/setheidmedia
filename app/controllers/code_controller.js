@@ -1,53 +1,26 @@
 module.exports = function(app) {
 
-app.controller('CodeController', ['$timeout', function($timeout) {
+app.controller('CodeController', ['$location', '$anchorScroll',
+function($location, $anchorScroll) {
   const _this = this;
+  _this.loaded = false;
 
-  _this.fullPageInit = function() {
-    $timeout(function() {
-      $('#fullpage').fullpage({
-        anchors:['about', 'work', 'skills', 'contact'],
-        menu: '#code-nav',
-        animateAnchor: false,
-        responsiveWidth: 750,
-        fitToSection: false,
-        touchSensitivity: 15,
-        scrollOverflow: false,
-        scrollingSpeed: 800,
-        // paddingBottom: '50px',
-        onLeave: function(index, nextIndex, direction) {
-          var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+  _this.highlightInit = function() {
+    var anchor, $activeTab, activeTabPosition;
 
-          activeAnchor = $('.code .section').eq(nextIndex-1).data('anchor');
-          $activeTab = $(`li[data-menuanchor='${activeAnchor}']`);
-          activeTabPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
+    $activeTab = $('li.active');
 
-          $('.highlight').css({'left':activeTabPosition});
-        }
-      });
+    activeTabPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
 
-      var urlArray, anchor, $activeTab, activeTabPosition;
+    $('.foot ul').append('<li class="highlight"></li>');
+    $('.highlight').css({'left':activeTabPosition});
 
-      if (window.location.pathname == '/') {
-        $activeTab = $('li[data-menuanchor="about"]');
-      } else {
-        urlArray = window.location.href.split('/');
-        anchor = urlArray[urlArray.length-1].slice(1);
-        $activeTab = $(`li[data-menuanchor='${anchor}']`);
-      }
+    $('.foot li').on('click', function() {
+      $activeTab = $(this);
+      var newPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
 
-      activeTabPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
-
-      $('.foot ul').append('<li class="highlight"></li>');
-      $('.highlight').css({'left':activeTabPosition});
-
-      $('.foot li').on('click', function() {
-        $activeTab = $(this);
-        var newPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
-
-        $('.highlight').css({'left':newPosition});
-      });
-    }, 500);
+      $('.highlight').css({'left':newPosition});
+    });
   }
 
   _this.projects = require('./../data/projects').projects;
@@ -57,6 +30,48 @@ app.controller('CodeController', ['$timeout', function($timeout) {
     _this.project = _this.projects[id-1];
   }
 
+  _this.pageScroll = function(section) {
+    $.fn.fullpage.moveTo(section);
+  };
+
 }]);
 
+app.directive('loadSlides', ['FullPageInit', function(FullPageInit) {
+  var fpInit = FullPageInit();
+
+  return function(scope, element, attrs) {
+    if (scope.$last) {
+      if (fpInit.getInit() == false) {
+        fpInit.setInit(true);
+        fpInitialize();
+      }
+    }
+  }
+
+}]);
+
+}
+
+function fpInitialize() {
+  $('#fullpage').fullpage({
+    anchors:['about', 'work', 'skills', 'contact'],
+    menu: '#code-nav',
+    animateAnchor: false,
+    lockAnchors: true,
+    responsiveWidth: 750,
+    fitToSection: false,
+    touchSensitivity: 15,
+    scrollOverflow: false,
+    scrollingSpeed: 800,
+    recordHistory: false,
+    onLeave: function(index, nextIndex, direction) {
+      var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+
+      activeAnchor = $('.code .section').eq(nextIndex-1).data('anchor');
+      $activeTab = $(`li[data-menuanchor='${activeAnchor}']`);
+      activeTabPosition = `${($activeTab.position().left / $('.foot').width())*100}%`;
+
+      $('.highlight').css({'left':activeTabPosition});
+    }
+  });
 }

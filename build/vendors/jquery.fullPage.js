@@ -148,7 +148,6 @@
             paddingTop: 0,
             paddingBottom: 0,
             fixedElements: null,
-            responsive: 0, //backwards compabitility with responsiveWiddth
             responsiveWidth: 0,
             responsiveHeight: 0,
 
@@ -2577,6 +2576,11 @@
 
             // remove .fp-enabled class
             $('html').removeClass(ENABLED);
+
+            // remove .fp-responsive class
+            if ($body.hasClass(RESPONSIVE)) {
+              $body.removeClass(RESPONSIVE);
+            }
 
             // remove all of the .fp-viewing- classes
             $.each($body.get(0).className.split(/\s+/), function (index, className) {

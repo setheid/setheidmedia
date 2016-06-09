@@ -50,6 +50,7 @@ nav a {
 .body {
   -webkit-transition: margin-left 0.5s ease;
   transition: margin-left 0.5s ease;
+  box-shadow: -5px 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .body.nav-open {
@@ -82,4 +83,20 @@ nav {
 
 .right {
   float: right;
+}
+
+.under-construction {
+  display: block;
+  position: absolute;
+  top: 50vh;
+  margin: -25vh auto 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  color: white;
+  text-align: center;
+}
+
+.under-construction h1 {
+  font-size: 3rem;
 }

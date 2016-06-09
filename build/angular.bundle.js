@@ -50,10 +50,16 @@
 	__webpack_require__(3);
 
 	var app = angular.module('app', ['ngRoute']);
-	/******** Controllers *********/
+	// Services
 	__webpack_require__(5)(app);
+	// Controllers
 	__webpack_require__(6)(app);
+	__webpack_require__(7)(app);
+	__webpack_require__(9)(app);
+	__webpack_require__(10)(app);
+	__webpack_require__(11)(app);
 
+	/******** APPLICATION *********/
 	app.controller('AppController', function () {
 	  var _this = this;
 	});
@@ -65,6 +71,21 @@
 	    templateUrl: 'templates/project.html'
 	  };
 	});
+
+	app.config(['$routeProvider', function (router) {
+	  router.when('/', {
+	    templateUrl: 'views/code.html'
+	  }).when('/audio', {
+	    templateUrl: 'views/under_construction.html',
+	    controller: 'AudioController'
+	  }).when('/images', {
+	    templateUrl: 'views/under_construction.html',
+	    controller: 'ImagesController'
+	  }).when('/about', {
+	    templateUrl: 'views/under_construction.html',
+	    controller: 'AboutController'
+	  });
+	}]);
 
 /***/ },
 /* 1 */
@@ -30960,7 +30981,7 @@
 /***/ function(module, exports) {
 
 	/**
-	 * @license AngularJS v1.5.5
+	 * @license AngularJS v1.5.6
 	 * (c) 2010-2016 Google, Inc. http://angularjs.org
 	 * License: MIT
 	 */
@@ -31565,35 +31586,7 @@
 	        }
 
 	        $q.when(nextRoute).
-	          then(function() {
-	            if (nextRoute) {
-	              var locals = angular.extend({}, nextRoute.resolve),
-	                  template, templateUrl;
-
-	              angular.forEach(locals, function(value, key) {
-	                locals[key] = angular.isString(value) ?
-	                    $injector.get(value) : $injector.invoke(value, null, null, key);
-	              });
-
-	              if (angular.isDefined(template = nextRoute.template)) {
-	                if (angular.isFunction(template)) {
-	                  template = template(nextRoute.params);
-	                }
-	              } else if (angular.isDefined(templateUrl = nextRoute.templateUrl)) {
-	                if (angular.isFunction(templateUrl)) {
-	                  templateUrl = templateUrl(nextRoute.params);
-	                }
-	                if (angular.isDefined(templateUrl)) {
-	                  nextRoute.loadedTemplateUrl = $sce.valueOf(templateUrl);
-	                  template = $templateRequest(templateUrl);
-	                }
-	              }
-	              if (angular.isDefined(template)) {
-	                locals['$template'] = template;
-	              }
-	              return $q.all(locals);
-	            }
-	          }).
+	          then(resolveLocals).
 	          then(function(locals) {
 	            // after route change
 	            if (nextRoute == $route.current) {
@@ -31609,6 +31602,41 @@
 	            }
 	          });
 	      }
+	    }
+
+	    function resolveLocals(route) {
+	      if (route) {
+	        var locals = angular.extend({}, route.resolve);
+	        angular.forEach(locals, function(value, key) {
+	          locals[key] = angular.isString(value) ?
+	              $injector.get(value) :
+	              $injector.invoke(value, null, null, key);
+	        });
+	        var template = getTemplateFor(route);
+	        if (angular.isDefined(template)) {
+	          locals['$template'] = template;
+	        }
+	        return $q.all(locals);
+	      }
+	    }
+
+
+	    function getTemplateFor(route) {
+	      var template, templateUrl;
+	      if (angular.isDefined(template = route.template)) {
+	        if (angular.isFunction(template)) {
+	          template = template(route.params);
+	        }
+	      } else if (angular.isDefined(templateUrl = route.templateUrl)) {
+	        if (angular.isFunction(templateUrl)) {
+	          templateUrl = templateUrl(route.params);
+	        }
+	        if (angular.isDefined(templateUrl)) {
+	          route.loadedTemplateUrl = $sce.valueOf(templateUrl);
+	          template = $templateRequest(templateUrl);
+	        }
+	      }
+	      return template;
 	    }
 
 
@@ -31993,6 +32021,32 @@
 	'use strict';
 
 	module.exports = function (app) {
+	  app.factory('FullPageInit', function () {
+	    var initialized = false;
+
+	    var fpInit = function fpInit() {};
+
+	    fpInit.prototype.setInit = function (bool) {
+	      initialized = bool;
+	    };
+
+	    fpInit.prototype.getInit = function () {
+	      return initialized;
+	    };
+
+	    return function () {
+	      return new fpInit();
+	    };
+	  });
+	};
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
 
 	  app.controller('NavController', function () {
 	    var _this = this;
@@ -32012,74 +32066,87 @@
 	};
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	module.exports = function (app) {
 
-	  app.controller('CodeController', ['$timeout', function ($timeout) {
+	  app.controller('CodeController', ['$location', '$anchorScroll', function ($location, $anchorScroll) {
 	    var _this = this;
+	    _this.loaded = false;
 
-	    _this.fullPageInit = function () {
-	      $timeout(function () {
-	        $('#fullpage').fullpage({
-	          anchors: ['about', 'work', 'skills', 'contact'],
-	          menu: '#code-nav',
-	          animateAnchor: false,
-	          responsiveWidth: 750,
-	          fitToSection: false,
-	          touchSensitivity: 15,
-	          scrollOverflow: false,
-	          scrollingSpeed: 800,
-	          // paddingBottom: '50px',
-	          onLeave: function onLeave(index, nextIndex, direction) {
-	            var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+	    _this.highlightInit = function () {
+	      var anchor, $activeTab, activeTabPosition;
 
-	            activeAnchor = $('.code .section').eq(nextIndex - 1).data('anchor');
-	            $activeTab = $('li[data-menuanchor=\'' + activeAnchor + '\']');
-	            activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
+	      $activeTab = $('li.active');
 
-	            $('.highlight').css({ 'left': activeTabPosition });
-	          }
-	        });
+	      activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
 
-	        var urlArray, anchor, $activeTab, activeTabPosition;
+	      $('.foot ul').append('<li class="highlight"></li>');
+	      $('.highlight').css({ 'left': activeTabPosition });
 
-	        if (window.location.pathname == '/') {
-	          $activeTab = $('li[data-menuanchor="about"]');
-	        } else {
-	          urlArray = window.location.href.split('/');
-	          anchor = urlArray[urlArray.length - 1].slice(1);
-	          $activeTab = $('li[data-menuanchor=\'' + anchor + '\']');
-	        }
+	      $('.foot li').on('click', function () {
+	        $activeTab = $(this);
+	        var newPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
 
-	        activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
-
-	        $('.foot ul').append('<li class="highlight"></li>');
-	        $('.highlight').css({ 'left': activeTabPosition });
-
-	        $('.foot li').on('click', function () {
-	          $activeTab = $(this);
-	          var newPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
-
-	          $('.highlight').css({ 'left': newPosition });
-	        });
-	      }, 500);
+	        $('.highlight').css({ 'left': newPosition });
+	      });
 	    };
 
-	    _this.projects = __webpack_require__(7).projects;
+	    _this.projects = __webpack_require__(8).projects;
 
 	    _this.project = {};
 	    _this.modal = function (id) {
 	      _this.project = _this.projects[id - 1];
 	    };
+
+	    _this.pageScroll = function (section) {
+	      $.fn.fullpage.moveTo(section);
+	    };
+	  }]);
+
+	  app.directive('loadSlides', ['FullPageInit', function (FullPageInit) {
+	    var fpInit = FullPageInit();
+
+	    return function (scope, element, attrs) {
+	      if (scope.$last) {
+	        if (fpInit.getInit() == false) {
+	          fpInit.setInit(true);
+	          fpInitialize();
+	        }
+	      }
+	    };
 	  }]);
 	};
 
+	function fpInitialize() {
+	  $('#fullpage').fullpage({
+	    anchors: ['about', 'work', 'skills', 'contact'],
+	    menu: '#code-nav',
+	    animateAnchor: false,
+	    lockAnchors: true,
+	    responsiveWidth: 750,
+	    fitToSection: false,
+	    touchSensitivity: 15,
+	    scrollOverflow: false,
+	    scrollingSpeed: 800,
+	    recordHistory: false,
+	    onLeave: function onLeave(index, nextIndex, direction) {
+	      var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
+
+	      activeAnchor = $('.code .section').eq(nextIndex - 1).data('anchor');
+	      $activeTab = $('li[data-menuanchor=\'' + activeAnchor + '\']');
+	      activeTabPosition = $activeTab.position().left / $('.foot').width() * 100 + '%';
+
+	      $('.highlight').css({ 'left': activeTabPosition });
+	    }
+	  });
+	}
+
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports) {
 
 	'use strict';
@@ -32136,6 +32203,66 @@
 	      github: 'https://github.com/setheid/dota-draft'
 	    }
 	  }]
+	};
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('AudioController', ['FullPageInit', function (FullPageInit) {
+	    var _this = this;
+
+	    // to handle the browser going back
+	    var fpInit = FullPageInit();
+	    if (fpInit.getInit() == true) {
+	      fpInit.setInit(false);
+	      $.fn.fullpage.destroy('all');
+	    }
+	  }]);
+	};
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('ImagesController', ['FullPageInit', function (FullPageInit) {
+	    var _this = this;
+
+	    // to handle the browser going back
+	    var fpInit = FullPageInit();
+	    if (fpInit.getInit() == true) {
+	      fpInit.setInit(false);
+	      $.fn.fullpage.destroy('all');
+	    }
+	  }]);
+	};
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	module.exports = function (app) {
+
+	  app.controller('AboutController', ['FullPageInit', function (FullPageInit) {
+	    var _this = this;
+
+	    // to handle the browser going back
+	    var fpInit = FullPageInit();
+	    if (fpInit.getInit() == true) {
+	      fpInit.setInit(false);
+	      $.fn.fullpage.destroy('all');
+	    }
+	  }]);
 	};
 
 /***/ }

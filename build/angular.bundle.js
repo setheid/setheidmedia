@@ -60,9 +60,12 @@
 	app.controller('AppController', ['FullPageInit', function (FullPageInit) {
 	  var _this = this;
 	  var fpInit = FullPageInit();
+
 	  _this.removeFullPage = function () {
-	    fpInit.setInit();
-	    $.fn.fullpage.destroy('all');
+	    if (fpInit.getInit() == true) {
+	      $.fn.fullpage.destroy('all');
+	      fpInit.setInit(false);
+	    }
 	  };
 	}]);
 
@@ -32023,13 +32026,14 @@
 	  app.factory('FullPageInit', function () {
 	    var initialized = false;
 
-	    var fpInit = function fpInit() {
-	      this.isInit = initialized;
+	    var fpInit = function fpInit() {};
+
+	    fpInit.prototype.setInit = function (bool) {
+	      initialized = bool;
 	    };
 
-	    fpInit.prototype.setInit = function () {
-	      initialized = !initialized;
-	      this.isInit = initialized;
+	    fpInit.prototype.getInit = function () {
+	      return initialized;
 	    };
 
 	    return function () {
@@ -32110,12 +32114,8 @@
 
 	    return function (scope, element, attrs) {
 	      if (scope.$last) {
-	        if (!fpInit.isInit) {
-	          fpInit.setInit();
-	          fpInitialize();
-	        } else {
-
-	          $.fn.fullpage.destroy('all');
+	        if (fpInit.getInit() == false) {
+	          fpInit.setInit(true);
 	          fpInitialize();
 	        }
 	      }
@@ -32124,7 +32124,6 @@
 	};
 
 	function fpInitialize() {
-	  console.log('load init');
 	  $('#fullpage').fullpage({
 	    anchors: ['about', 'work', 'skills', 'contact'],
 	    menu: '#code-nav',
@@ -32146,7 +32145,6 @@
 	      $('.highlight').css({ 'left': activeTabPosition });
 	    }
 	  });
-	  $.fn.fullpage.reBuild();
 	}
 
 /***/ },

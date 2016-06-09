@@ -42,23 +42,18 @@ app.directive('loadSlides', ['FullPageInit', function(FullPageInit) {
 
   return function(scope, element, attrs) {
     if (scope.$last) {
-      if (!fpInit.isInit) {
-        fpInit.setInit();
-        fpInitialize();
-
-      } else {
-
-        $.fn.fullpage.destroy('all');
+      if (fpInit.getInit() == false) {
+        fpInit.setInit(true);
         fpInitialize();
       }
     }
   }
+  
 }]);
 
 }
 
 function fpInitialize() {
-  console.log('load init');
   $('#fullpage').fullpage({
     anchors:['about', 'work', 'skills', 'contact'],
     menu: '#code-nav',
@@ -80,5 +75,4 @@ function fpInitialize() {
       $('.highlight').css({'left':activeTabPosition});
     }
   });
-  $.fn.fullpage.reBuild();
 }

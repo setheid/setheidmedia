@@ -14,10 +14,14 @@ require('./controllers/code_controller')(app);
 app.controller('AppController', ['FullPageInit', function(FullPageInit) {
   const _this = this;
   var fpInit = FullPageInit();
+
   _this.removeFullPage = function() {
-    fpInit.setInit();
-    $.fn.fullpage.destroy('all');
+    if (fpInit.getInit() == true) {
+      $.fn.fullpage.destroy('all');
+      fpInit.setInit(false);
+    }
   };
+  
 }]);
 
 app.directive('projects', function() {

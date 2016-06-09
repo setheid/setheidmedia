@@ -2,13 +2,14 @@ module.exports = function(app) {
   app.factory('FullPageInit', function() {
     var initialized = false;
 
-    var fpInit = function() {
-      this.isInit = initialized;
+    var fpInit = function() {};
+
+    fpInit.prototype.setInit = function(bool) {
+      initialized = bool;
     }
 
-    fpInit.prototype.setInit = function() {
-      initialized = !initialized;
-      this.isInit = initialized;
+    fpInit.prototype.getInit = function() {
+      return initialized;
     }
 
     return function() {

@@ -25,7 +25,6 @@ function($location, $anchorScroll) {
 
   _this.projects = require('./../data/projects').projects;
 
-  _this.project = {};
   _this.modal = function(id) {
     _this.project = _this.projects[id-1];
   }
@@ -34,14 +33,26 @@ function($location, $anchorScroll) {
     $.fn.fullpage.moveTo(section);
   };
 
+  _this.slidesNav = function(index) {
+    $.fn.fullpage.moveTo(2, index);
+  };
+
 }]);
+
+app.directive('projects', function() {
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: 'templates/project.html'
+  }
+});
 
 app.directive('loadSlides', ['FullPageInit', function(FullPageInit) {
   var fpInit = FullPageInit();
 
   return function(scope, element, attrs) {
     if (scope.$last) {
-      if (fpInit.getInit() == false) {
+      if (!fpInit.getInit()) {
         fpInit.setInit(true);
         fpInitialize();
       }
@@ -54,17 +65,19 @@ app.directive('loadSlides', ['FullPageInit', function(FullPageInit) {
 
 function fpInitialize() {
   $('#fullpage').fullpage({
-    anchors:['about', 'work', 'skills', 'contact'],
-    menu: '#code-nav',
-    animateAnchor: false,
-    lockAnchors: true,
-    responsiveWidth: 750,
-    fitToSection: false,
-    touchSensitivity: 15,
-    scrollOverflow: false,
-    scrollingSpeed: 800,
-    recordHistory: false,
-    onLeave: function(index, nextIndex, direction) {
+    anchors:['about', 'work', 'skills', 'contact']
+    , menu: '#code-nav'
+    , slidesNavigation: true
+    , slidesNavPosition: 'bottom'
+    , animateAnchor: false
+    , lockAnchors: true
+    , responsiveWidth: 750
+    , fitToSection: false
+    , touchSensitivity: 15
+    , scrollOverflow: false
+    , scrollingSpeed: 800
+    , recordHistory: false
+    , onLeave: function(index, nextIndex, direction) {
       var $leavingSection, $nextSection, activeAnchor, $activeTab, activeTabPosition;
 
       activeAnchor = $('.code .section').eq(nextIndex-1).data('anchor');

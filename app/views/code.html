@@ -81,7 +81,7 @@
     </ul>
   </div>
   <!-- MODAL OVERLAY -->
-  <div ng-class="{'show':codeCtrl.showDescription}" class="description-wrapper">
+  <div ng-class="{'show':codeCtrl.showDescription}" class="description-wrapper" data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription">
     <div class="work-description">
       <div data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription" class="description-close"><i class="fa fa-times" aria-hidden="true"></i></div>
       <p>

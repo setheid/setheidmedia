@@ -2166,13 +2166,15 @@
             nav.addClass(options.slidesNavPosition);
 
             for(var i=0; i< numSlides; i++){
-                nav.find('ul').append('<li><a href="#"><span></span></a></li>');
+                nav.find('ul').append('<li><a data-ng-click="codeCtrl.slidesNav('+ i +')"><span></span></a></li>');
             }
 
-            //centering it
-            nav.css('margin-left', '-' + (nav.width()/2) + 'px');
-
             nav.find('li').first().find('a').addClass(ACTIVE);
+
+            //centering it
+            setTimeout(function(){
+              nav.css('margin-left', '-' + nav.width()/2 + 'px');
+            },0);
         }
 
 

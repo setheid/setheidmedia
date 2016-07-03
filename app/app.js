@@ -4,9 +4,11 @@ const angular = require('angular');
 require('angular-route');
 
 const app = angular.module('app', ['ngRoute']);
-  // Services
+
+// Services
 require('./services/fullpage_init')(app);
-  // Controllers
+
+// Controllers
 require('./controllers/nav_controller')(app);
 require('./controllers/code_controller')(app);
 require('./controllers/audio_controller')(app);
@@ -18,6 +20,17 @@ app.controller('AppController', function() {
   const _this = this;
 
 });
+
+app.directive('removeFullpage', ['FullPageInit', function(FullPageInit) {
+  return function(scope, element, attrs) {
+    // remove fullPage from DOM
+    var fpInit = FullPageInit();
+    if (fpInit.getInit()) {
+      fpInit.setInit(false);
+      $.fn.fullpage.destroy('all');
+    }
+  }
+}]);
 
 app.directive('projects', function() {
   return {

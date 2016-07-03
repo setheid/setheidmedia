@@ -50,8 +50,10 @@
 	__webpack_require__(3);
 
 	var app = angular.module('app', ['ngRoute']);
+
 	// Services
 	__webpack_require__(5)(app);
+
 	// Controllers
 	__webpack_require__(6)(app);
 	__webpack_require__(7)(app);
@@ -63,6 +65,17 @@
 	app.controller('AppController', function () {
 	  var _this = this;
 	});
+
+	app.directive('removeFullpage', ['FullPageInit', function (FullPageInit) {
+	  return function (scope, element, attrs) {
+	    // remove fullPage from DOM
+	    var fpInit = FullPageInit();
+	    if (fpInit.getInit()) {
+	      fpInit.setInit(false);
+	      $.fn.fullpage.destroy('all');
+	    }
+	  };
+	}]);
 
 	app.directive('projects', function () {
 	  return {
@@ -1669,11 +1682,11 @@
 	    var _this = this;
 
 	    // to handle the browser going back
-	    var fpInit = FullPageInit();
-	    if (fpInit.getInit() == true) {
-	      fpInit.setInit(false);
-	      $.fn.fullpage.destroy('all');
-	    }
+	    // var fpInit = FullPageInit();
+	    // if (fpInit.getInit() == true) {
+	    //   fpInit.setInit(false);
+	    //   $.fn.fullpage.destroy('all');
+	    // }
 	  }]);
 	};
 
@@ -1689,11 +1702,11 @@
 	    var _this = this;
 
 	    // to handle the browser going back
-	    var fpInit = FullPageInit();
-	    if (fpInit.getInit() == true) {
-	      fpInit.setInit(false);
-	      $.fn.fullpage.destroy('all');
-	    }
+	    // var fpInit = FullPageInit();
+	    // if (fpInit.getInit() == true) {
+	    //   fpInit.setInit(false);
+	    //   $.fn.fullpage.destroy('all');
+	    // }
 	  }]);
 	};
 
@@ -1709,11 +1722,11 @@
 	    var _this = this;
 
 	    // to handle the browser going back
-	    var fpInit = FullPageInit();
-	    if (fpInit.getInit() == true) {
-	      fpInit.setInit(false);
-	      $.fn.fullpage.destroy('all');
-	    }
+	    // var fpInit = FullPageInit();
+	    // if (fpInit.getInit() == true) {
+	    //   fpInit.setInit(false);
+	    //   $.fn.fullpage.destroy('all');
+	    // }
 	  }]);
 	};
 

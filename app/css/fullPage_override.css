@@ -24,7 +24,7 @@
 }
 
 .fp-slidesNav.bottom {
-    bottom: 60px;
+    display: none;
 }
 
 .fp-slidesNav ul li a span {

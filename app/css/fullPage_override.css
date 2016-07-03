@@ -45,6 +45,7 @@
   }
 
   .fp-slidesNav.bottom {
+      display: block;
       bottom: 70px;
   }
 }

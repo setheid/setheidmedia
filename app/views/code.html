@@ -82,14 +82,15 @@
   </div>
   <!-- MODAL OVERLAY -->
   <div ng-class="{'show':codeCtrl.showDescription}" class="description-wrapper">
+    <div class="description-overlay" data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription"></div>
     <div class="work-description">
       <div data-ng-click="codeCtrl.showDescription = !codeCtrl.showDescription" class="description-close"><i class="fa fa-times" aria-hidden="true"></i></div>
       <p>
         {{codeCtrl.project.description}}
       </p>
       <div class="description-footer">
-        <div class="left"><a target="_blank" href="{{codeCtrl.project.link.page}}">WEBPAGE</a></div>
-        <div class="right"><a target="_blank" href="{{codeCtrl.project.link.github}}">GITHUB REPO</a></div>
+        <div class="left"><a target="_blank" ng-href="{{codeCtrl.project.link.page}}">WEBPAGE</a></div>
+        <div class="right"><a target="_blank" ng-href="{{codeCtrl.project.link.github}}">GITHUB REPO</a></div>
       </div>
     </div>
   </div>

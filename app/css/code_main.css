@@ -70,6 +70,7 @@
 
 .profile-pic {
   border-radius: 50%;
+  border: 1px solid #797768;
   width: 100%;
   height: 100%;
   background-image: url(images/profile.jpg);
@@ -147,11 +148,18 @@
   left: 0;
   width: 100%;
   height: 100%;
-  /*background-color: #1D1D1D;*/
-  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
   -webkit-transition:  visibility 0.5s, opacity 0.5s ease;
   transition: visibility 0.5s, opacity 0.5s ease;
-  z-index: 9999;
+}
+
+.description-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .description-wrapper.show {
